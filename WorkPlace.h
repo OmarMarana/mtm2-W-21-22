@@ -4,7 +4,7 @@
 
 namespace mtm
 {
-    typedef void*(*ConditionToCheck)(Condition*);
+    ////typedef void*(*ConditionToCheck)(Condition*);
     class WorkPlace
     {
         private:
@@ -22,20 +22,12 @@ namespace mtm
         
         template<class HiringCondition>
         void hireEmployee(HiringCondition condition ,Employee* employee,int id_of_manager);
-        virtual std::ostream& printShort(std::ostream& stream) const =0;
-        virtual std::ostream& printLong(std::ostream& stream) const =0;
-        virtual std::shared_ptr<Citizen> clone() const = 0;
-
-        friend bool operator==(const Citizen& Citizen1,const Citizen& Citizen2); // how to make virtual
-        friend bool operator<(const Citizen& Citizen1,const Citizen& Citizen2);
-        virtual ~Citizen() = default;
-
-        
+        void hireManager(Manager* manager);
+        void fireEmployee(int employee_id, int manager_id);
+        void fireManager(int manager_id);
+        friend std::ostream& operator<<(std::ostream& stream, const WorkPlace& work_place);
     };
-    bool operator>(const Citizen& Citizen1,const Citizen& Citizen2);
-    bool operator>=(const Citizen& Citizen1,const Citizen& Citizen2);
-    bool operator<=(const Citizen& Citizen1,const Citizen& Citizen2);
-    bool operator!=(const Citizen& Citizen1,const Citizen& Citizen2);
+  
 }
 
 
