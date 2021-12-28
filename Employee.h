@@ -10,7 +10,7 @@ namespace mtm
         private:
             int salary;
             int score;
-            std::vector<Skill> skills;
+            std::set<Skill> skills; // may have to define a cmpFunc like citizenCmp
 
         
         

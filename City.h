@@ -1,6 +1,6 @@
 #ifndef __CITY_H__
 #define __CITY_H__
-#include <vector>
+#include <set>
 #include <memory>
 #include "Citizen.h"
 #include "Faculty.h"
@@ -12,9 +12,9 @@ namespace mtm
     {
         private:
             std::string name;
-            std::vector<std::shared_ptr<Citizen>> citizens;
-            std::vector<Faculty> faculties;
-            std::vector<WorkPlace> workplaces;
+            std::set<std::shared_ptr<Citizen> , CompareCitizens> citizens;
+            std::set<Faculty, CompareFaculties> faculties;
+            std::set<WorkPlace, CompareWorkplaces> workplaces;
         
         public:
             City(std::string name) : name(name) {}

@@ -17,9 +17,9 @@ namespace mtm
         int getId();
         std::string getName();
         int getRequiredPoints();
-        Skill& operator++() = delete; // prefix ++ // check if this is how to prevent users from using the method
         Skill& operator++(int); // postfix ++
         Skill& operator+=(const Skill& skill1);
+        friend Skill operator+(const Skill& skill1,int points);
         friend std::ostream& operator<<(std::ostream& stream, const Skill& skill);
         friend bool operator==(const Skill& skill1,const Skill& skill2);
         friend bool operator<(const Skill& skill1,const Skill& skill2);

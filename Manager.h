@@ -3,13 +3,15 @@
 #include "Citizen.h"
 #include "Employee.h"
 #include <memory>
-#include <vector>
+#include <set>
 namespace mtm
-{
+{   
+    
+
 	class Manager : public Citizen
 	{
         int salary;
-        std::vector<std::shared_ptr <Employee>> employees; 
+        std::set<std::shared_ptr<Employee>, mtm::CompareCitizens> employees; 
 
         Manager(int id,std::string first_name,std::string last_name,int year_of_birth,
         int salary):Citizen(id, first_name, last_name,year_of_birth),salary(salary){}

@@ -5,6 +5,15 @@
 
 namespace mtm
 {
+    class CompareCitizens 
+    {
+        public:
+            bool operator()(Citizen* citizen1, Citizen* citizen2)
+            {
+                return citizen1->getId() < citizen2->getId(); 
+            }
+    };
+    
     class Citizen
     {
         private:

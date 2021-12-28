@@ -8,7 +8,15 @@
 
 
 namespace mtm
-{                                             //******************************************
+{
+    class CompareFaculties
+    {
+        public:
+            bool operator()( Faculty& faculty1,  Faculty& faculty2)
+            {
+                return faculty1.getId() < faculty2.getId(); 
+            }
+    };                                             //******************************************
     typedef bool(*Condition)(Employee*);      // check if this is okay with the Staff reqs, specifically with add faculty
     class Faculty                             //******************************************
     {
@@ -26,7 +34,7 @@ namespace mtm
             Skill getSkill();
             std::string getName();
             int getRequiredPoints();
-            void teach(Employee employee);
+            void teach(Employee& employee);
     };
 
 }
