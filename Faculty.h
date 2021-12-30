@@ -32,8 +32,6 @@ namespace mtm
             int getAddedPoints();
             int getId();
             Skill getSkill();
-            std::string getName();
-            int getRequiredPoints();
             void teach(Employee& employee);
     };
 

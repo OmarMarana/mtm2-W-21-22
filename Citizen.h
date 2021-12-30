@@ -23,17 +23,18 @@ namespace mtm
             int year_of_birth;
         
         public:
-        Citizen(int id,std::string first_name,std::string last_name,int year_of_birth );
-        int getId();
-        std::string getFirstName();
-        std::string getLastName();
-        int getYearOfBirth();
+        Citizen(int id,std::string first_name,std::string last_name,int year_of_birth ): id(id), first_name(first_name),
+        last_name(last_name), year_of_birth(year_of_birth) {}
+        int getId() const;
+        std::string getFirstName()const;
+        std::string getLastName()const;
+        int getYearOfBirth()const;
 
         virtual std::ostream& printShort(std::ostream& stream) const =0;
         virtual std::ostream& printLong(std::ostream& stream) const =0;
         virtual std::shared_ptr<Citizen> clone() const = 0;
 
-        friend bool operator==(const Citizen& Citizen1,const Citizen& Citizen2); // how to make virtual
+        friend bool operator==(const Citizen& Citizen1,const Citizen& Citizen2); 
         friend bool operator<(const Citizen& Citizen1,const Citizen& Citizen2);
         virtual ~Citizen() = default;
 

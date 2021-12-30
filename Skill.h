@@ -14,12 +14,12 @@ namespace mtm
         
         public:
         Skill(int id, std::string name, int required_points) : id(id), name(name), required_points(required_points){};
-        int getId();
-        std::string getName();
-        int getRequiredPoints();
+        int getId() const;
+        std::string getName() const;
+        int getRequiredPoints() const;
         Skill& operator++(int); // postfix ++
-        Skill& operator+=(const Skill& skill1);
-        friend Skill operator+(const Skill& skill1,int points);
+        Skill& operator+=(int delta);
+        friend Skill operator+(Skill& skill,int points);
         friend std::ostream& operator<<(std::ostream& stream, const Skill& skill);
         friend bool operator==(const Skill& skill1,const Skill& skill2);
         friend bool operator<(const Skill& skill1,const Skill& skill2);
@@ -28,7 +28,6 @@ namespace mtm
     bool operator>=(const Skill& skill1,const Skill& skill2);
     bool operator<=(const Skill& skill1,const Skill& skill2);
     bool operator!=(const Skill& skill1,const Skill& skill2);
-
 }
 
 #endif

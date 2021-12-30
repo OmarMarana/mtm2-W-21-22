@@ -30,10 +30,10 @@ namespace mtm
         name(name), salary_of_employees(salary_of_employees), salary_of_managers(salary_of_managers) {}
         ~WorkPlace() = default;
         //write the other defaults for this class and other classes
-        int getManagersSalary();
-        int getWorkersSalary();
-        std::string getName();
-        int getId();
+        int getManagersSalary()const;
+        int getWorkersSalary()const;
+        std::string getName()const;
+        int getId()const;
         
         template<class HiringCondition>
         void hireEmployee(HiringCondition condition ,std::shared_ptr<Employee> employee,int id_of_manager);
