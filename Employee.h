@@ -2,6 +2,7 @@
 #define EMPLOYEE_H
 #include "Skill.h"
 #include "Citizen.h"
+#include <set>
 
 namespace mtm
 {
@@ -26,6 +27,14 @@ namespace mtm
             std::ostream& printShort(std::ostream& stream) const override;
             std::ostream& printLong(std::ostream& stream) const override;
             std::shared_ptr<Citizen> clone() const override;
+    };
+    class CompareEmployee 
+    {
+        public:
+            bool operator()(std::shared_ptr<Employee> employee1, std::shared_ptr<Employee> employee2)
+            {
+                return employee1->getId() < employee2->getId(); 
+            }
     };
 }
 

@@ -7,14 +7,7 @@
 
 namespace mtm
 {
-    class CompareWorkplaces
-    {
-        public:
-            bool operator()( WorkPlace& workPlace1, WorkPlace& workPlace2)
-            {
-                return workPlace1.getId() < workPlace2.getId(); 
-            }
-    };                                        
+                       
     ////typedef void*(*ConditionToCheck)(Condition*);
     class WorkPlace
     {
@@ -42,6 +35,15 @@ namespace mtm
         void fireManager(int manager_id);
         friend std::ostream& operator<<(std::ostream& stream, const WorkPlace& work_place);
     };
+     
+    class CompareWorkplaces
+    {
+        public:
+            bool operator()( WorkPlace& workPlace1, WorkPlace& workPlace2)
+            {
+                return workPlace1.getId() < workPlace2.getId(); 
+            }
+    };                    
   
 }
 

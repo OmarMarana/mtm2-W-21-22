@@ -75,4 +75,14 @@ namespace mtm
         return ptr;
        
     }
+
+    bool Manager::getHired() const
+    {
+        return hired;
+    }
+
+    void Manager::setHired(bool hired)
+    {
+        this->hired = hired;
+    }
 }

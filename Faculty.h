@@ -9,14 +9,7 @@
 
 namespace mtm
 {
-    class CompareFaculties
-    {
-        public:
-            bool operator()( Faculty& faculty1,  Faculty& faculty2)
-            {
-                return faculty1.getId() < faculty2.getId(); 
-            }
-    };                                             //******************************************
+                                 //******************************************
     typedef bool(*Condition)(Employee*);      // check if this is okay with the Staff reqs, specifically with add faculty
     class Faculty                             //******************************************
     {
@@ -34,6 +27,14 @@ namespace mtm
             Skill getSkill();
             void teach(Employee& employee);
     };
+    class CompareFaculties
+    {
+        public:
+            bool operator()( Faculty& faculty1,  Faculty& faculty2)
+            {
+                return faculty1.getId() < faculty2.getId(); 
+            }
+    };                
 
 }
 
