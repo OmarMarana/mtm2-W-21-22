@@ -22,12 +22,8 @@ namespace mtm
     void Manager::removeEmployee(int employee_id)
     {
         //first_name,std::string last_name,int year_of_birth, int salary,int score
-        std::string tmp_first = "Yohai";
-        std::string tmp_last = "Cenzor";
-        int tmp_birth_year = 1910;
-        int tmp_salary = 2;
-        int tmp_score = 1;
-        std::shared_ptr<Employee> tmp_employee(new Employee(employee_id,tmp_first,tmp_last,tmp_birth_year,tmp_salary,tmp_score));
+       
+        std::shared_ptr<Employee> tmp_employee(new Employee(employee_id,"a","a",1));
 
         std::shared_ptr<Employee> employee_in_set = *(employees.find(tmp_employee));
         if(employee_in_set->getId() != employee_id)
@@ -69,11 +65,8 @@ namespace mtm
     
     std::shared_ptr<Citizen> Manager::clone() const 
     {
-       
-
         std::shared_ptr<Citizen> ptr(new Manager(*this));
-        return ptr;
-       
+        return ptr; 
     }
 
     bool Manager::getHired() const

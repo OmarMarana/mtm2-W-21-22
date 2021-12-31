@@ -19,7 +19,7 @@ namespace mtm
         return skill;
     }
 
-    void Faculty::teach(Employee& employee)
+    void Faculty::teach(Employee& employee) const
     {
         if(condition(&employee))
         {

@@ -29,7 +29,7 @@ namespace mtm
             throw EmployeeNotSelected();
         }
        
-        std::shared_ptr<Manager> temp_manager(new Manager(id_of_manager,"a","a",1,1));
+        std::shared_ptr<Manager> temp_manager(new Manager(id_of_manager,"a","a",1));
         std::shared_ptr<Manager> manager_in_workplace = *(managers.find(temp_manager));
 
         if(manager_in_workplace->getId() != id_of_manager)
@@ -42,7 +42,6 @@ namespace mtm
         // manager_in_workplace->employees.insert(employee);    // why are they accessible
         // manager_in_workplace->first_name = "ffsd";
         // (*manager_in_workplace).first_name = "ads";
-
     }
     
     void WorkPlace::hireManager(std::shared_ptr<Manager> manager)
@@ -59,13 +58,12 @@ namespace mtm
         }
         
         managers.insert(manager);
-        manager->setHired(true);
-        
+        manager->setHired(true);   
     }
 
     void WorkPlace::fireEmployee(int employee_id, int manager_id)
     {
-        std::shared_ptr<Manager> temp_manager(new Manager(manager_id,"a","a",1,1));
+        std::shared_ptr<Manager> temp_manager(new Manager(manager_id,"a","a",1));
         std::shared_ptr<Manager> manager_in_workplace = *(managers.find(temp_manager));
 
         if(manager_in_workplace->getId() != manager_id)
@@ -74,12 +72,11 @@ namespace mtm
         }
 
         manager_in_workplace->removeEmployee(employee_id);
-
     }
 
     void WorkPlace::fireManager(int manager_id)
     {    
-        std::shared_ptr<Manager> tmp_manager(new Manager(manager_id,"a","a",1,1));
+        std::shared_ptr<Manager> tmp_manager(new Manager(manager_id,"a","a",1));
         std::shared_ptr<Manager> manager_in_set = *(managers.find(tmp_manager));
 
         if(manager_in_set->getId() != manager_id)
@@ -110,6 +107,4 @@ namespace mtm
   
         return stream;
     }
-
-
 }

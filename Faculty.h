@@ -25,12 +25,12 @@ namespace mtm
             int getAddedPoints();
             int getId();
             Skill getSkill();
-            void teach(Employee& employee);
+            void teach(Employee& employee)const;
     };
     class CompareFaculties
     {
         public:
-            bool operator()( Faculty& faculty1,  Faculty& faculty2)
+            bool operator()( Faculty faculty1,  Faculty faculty2)
             {
                 return faculty1.getId() < faculty2.getId(); 
             }

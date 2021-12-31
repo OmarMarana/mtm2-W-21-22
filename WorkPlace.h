@@ -16,7 +16,7 @@ namespace mtm
             std::string name;
             int salary_of_employees;
             int salary_of_managers;
-            std::set<std::shared_ptr<Manager>, CompareCitizens> managers;
+            std::set<std::shared_ptr<Manager>, CompareManager> managers;
 
         public:
         WorkPlace(int id,std::string name,int salary_of_employees,int salary_of_managers) : id(id),
@@ -39,7 +39,7 @@ namespace mtm
     class CompareWorkplaces
     {
         public:
-            bool operator()( WorkPlace& workPlace1, WorkPlace& workPlace2)
+            bool operator()( WorkPlace workPlace1, WorkPlace workPlace2)
             {
                 return workPlace1.getId() < workPlace2.getId(); 
             }
