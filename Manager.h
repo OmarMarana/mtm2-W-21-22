@@ -30,7 +30,7 @@ namespace mtm
             std::ostream& printLong(std::ostream& stream) const override;
             std::shared_ptr<Citizen> clone() const override;
             ~Manager() override = default;
-    
+            bool isEmployeeIn(int employee_id);
             Manager(const Manager& other) = default;
     };
     class CompareManager 

@@ -4,22 +4,26 @@
 
 namespace mtm
 {
-    int Faculty::getAddedPoints()
+    template<class Condition>
+    int Faculty<Condition>::getAddedPoints()
     {
         return acquired_points;
     }
 
-    int Faculty::getId()
+    template<class Condition>
+    int Faculty<Condition>::getId()
     {
         return id;
     }
 
-    Skill Faculty::getSkill()
+    template<class Condition>
+    Skill Faculty<Condition>::getSkill()
     {
         return skill;
     }
 
-    void Faculty::teach(Employee& employee) const
+    template<class Condition>
+    void Faculty<Condition>::teach(Employee& employee) const
     {
         if(condition(&employee))
         {

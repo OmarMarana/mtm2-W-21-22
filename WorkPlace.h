@@ -33,6 +33,7 @@ namespace mtm
         void hireManager(std::shared_ptr<Manager> manager);
         void fireEmployee(int employee_id, int manager_id);
         void fireManager(int manager_id);
+        bool isWorkingHere(int employee_id);
         friend std::ostream& operator<<(std::ostream& stream, const WorkPlace& work_place);
     };
      

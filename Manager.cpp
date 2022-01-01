@@ -78,4 +78,17 @@ namespace mtm
     {
         this->hired = hired;
     }
+
+
+    bool Manager::isEmployeeIn(int employee_id)
+    {
+        for(std::set<std::shared_ptr<Employee>, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
+        {
+           if((*i)->getId() == employee_id)
+           {
+               return true;
+           }
+        } 
+        return false;
+    }
 }

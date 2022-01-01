@@ -107,4 +107,15 @@ namespace mtm
   
         return stream;
     }
+
+    bool WorkPlace::isWorkingHere(int employee_id)
+    {
+        bool found = false;
+        for(std::set<std::shared_ptr<Manager>, CompareManager> ::iterator i = managers.begin(); i !=
+        managers.end(); ++i)
+        {
+            found = (*i)->isEmployeeIn(employee_id);
+        }
+        return found;
+    }
 }
