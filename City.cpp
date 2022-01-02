@@ -301,7 +301,34 @@ namespace mtm
 
     int  City::getAllAboveSalary(std::ostream& stream, int salary)
     {
-        return 0;
+        int count = 0;
+        std::shared_ptr<Manager> manager;
+        std::shared_ptr<Employee> employee;
+        for(std::set<std::shared_ptr<Citizen>, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
+        citizens.end(); ++i)
+        {
+            employee = std::dynamic_pointer_cast<Employee>(*i);
+            if(employee != nullptr )
+            {
+                if(employee->getSalary() >= salary)
+                {
+                    count++;
+                    employee->printShort(stream);
+
+                }
+            }
+            else
+            {
+                manager = std::dynamic_pointer_cast<Manager>(*i);
+                if(manager->getSalary() >= salary)
+                {
+                    count++;
+                    manager->printShort(stream);
+
+                }
+            }    
+        }
+        return count;
     }
     
     bool City::isWorkingInTheSameWorkplace(int employee_id1,int employee_id2)
@@ -358,12 +385,14 @@ namespace mtm
             if(wp.isWorkingHere(employee_id1))
             {
                 working_at_the_same_place = wp.isWorkingHere(employee_id2);
+                if(working_at_the_same_place == true)
+                {
+                    break;
+                }
             }
         }
 
-        return working_at_the_same_place;
-
-        
+        return working_at_the_same_place;  
     }
 
     void City::printAllEmployeesWithSkill(std::ostream& stream, int skill_id)
