@@ -10,7 +10,19 @@ namespace mtm
     }
     void Manager::addEmployee(std::shared_ptr<Employee> employee)
     {
-        std::shared_ptr<Employee> employee_in_set = *(employees.find(employee));  // check if find works as expected
+        if(*(employees.find(employee)) == nullptr)
+        {
+            employees.insert(employee);
+            return;
+        }
+
+        if(employees.find(employee) == employees.end())
+        {
+            employees.insert(employee);
+            return;
+        }
+        std::shared_ptr<Employee> employee_in_set = *(employees.find(employee));
+
         if(employee_in_set->getId() == employee->getId())
         {
             throw EmployeeAlreadyHired();
@@ -32,6 +44,7 @@ namespace mtm
         }
         
         employees.erase(tmp_employee);
+
 
     }
     void Manager::setSalary(int salary_to_add)

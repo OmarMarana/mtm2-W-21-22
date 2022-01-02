@@ -73,7 +73,7 @@ namespace mtm
     std::ostream& Employee::printShort(std::ostream& stream) const 
     {
         return stream << getFirstName() << " " << getLastName() << std::endl 
-        << "Salary: " << salary << "Score: " << score << std::endl;   
+        << "Salary: " << salary << " Score: " << score << std::endl;
     }
 
     std::ostream& Employee::printLong(std::ostream& stream) const

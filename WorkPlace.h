@@ -81,7 +81,7 @@ namespace mtm
         }
 
         manager_in_workplace->addEmployee(employee);
-
+        employee->setSalary(this->salary_of_employees);
         // manager_in_workplace->employees.insert(employee);    // why are they accessible
         // manager_in_workplace->first_name = "ffsd";
         // (*manager_in_workplace).first_name = "ads";
@@ -89,7 +89,15 @@ namespace mtm
     
     void WorkPlace::hireManager(std::shared_ptr<Manager> manager)
     {
+        if(*(managers.find(manager)) == nullptr) // managers is empty
+        {
+            managers.insert(manager);
+            manager->setHired(true);
+            return;
+        }
+
         std::shared_ptr<Manager> manager_in_workplace = *(managers.find(manager));
+
         if(manager_in_workplace->getId() == manager->getId())
         {
             throw ManagerAlreadyHired();
@@ -99,9 +107,9 @@ namespace mtm
         {
             throw CanNotHireManager();
         }
-        
+
         managers.insert(manager);
-        manager->setHired(true);   
+        manager->setHired(true);
     }
 
     void WorkPlace::fireEmployee(int employee_id, int manager_id)
@@ -115,6 +123,8 @@ namespace mtm
         }
 
         manager_in_workplace->removeEmployee(employee_id);
+        //write function that updates salary after fire
+
     }
 
     void WorkPlace::fireManager(int manager_id)

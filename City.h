@@ -31,7 +31,7 @@ namespace mtm
     // template<class Condition>
     class City
     {
-        
+
         private:
             std::string name;
             std::set<std::shared_ptr<Citizen> , CompareCitizens> citizens;
@@ -215,6 +215,7 @@ namespace mtm
             throw WorkplaceDoesNotExist();
         }
 
+
         WorkPlace wp = (*(workplaces.find(work_place)));
         wp.hireEmployee(Condition ,employee_1 ,manager_id);
         workplaces.erase((*(workplaces.find(work_place))));
@@ -319,6 +320,7 @@ namespace mtm
 
         WorkPlace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
         wp.fireEmployee(employee_id, manager_id);
+
 
         workplaces.erase((*(workplaces.find(work_place))));
         workplaces.insert(wp);
@@ -462,18 +464,20 @@ namespace mtm
     void City::printAllEmployeesWithSkill(std::ostream& stream, int skill_id)
     {
        std::shared_ptr<Employee>employee_1; 
-         for(std::set<std::shared_ptr<Citizen>, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
-        citizens.end(); ++i)
-        {
-               employee_1 = std::dynamic_pointer_cast<Employee>(*i);
-               if(employee_1.get() != nullptr)
-               {
-                    if(employee_1->hasSkill(skill_id)==true)//?
-                    {
-                        (*i)->printShort(stream) << std::endl;
-                    }   
-               }      
-        }
+       for(std::set<std::shared_ptr<Citizen>, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
+       citizens.end(); ++i)
+       {
+           employee_1 = std::dynamic_pointer_cast<Employee>(*i);
+           if(employee_1.get() != nullptr)
+           {
+               if(employee_1->hasSkill(skill_id)==true)//?
+                   {
+                   (*i)->printShort(stream) ;
+                   }
+           }
+       }
+       stream << std::endl;
+
     }       
 }
 
