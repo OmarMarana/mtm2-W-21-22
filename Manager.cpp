@@ -4,6 +4,12 @@
 
 namespace mtm
 {
+
+    // void Manager::updateEmployeeSalaryAfterFire(int employee_id, int salary_to_deduce)
+    // {
+
+
+    // }
     int Manager::getSalary()const
     {
         return salary;
@@ -47,9 +53,9 @@ namespace mtm
 
 
     }
-    void Manager::setSalary(int salary_to_add)
+    void Manager::setSalary(int delta)
     {   
-        int new_salary = salary + salary_to_add;
+        int new_salary = salary + delta;
         if(new_salary <= 0)
         {
             this->salary = 0;
@@ -103,5 +109,13 @@ namespace mtm
            }
         } 
         return false;
+    }
+
+    void Manager::updateEmployeesSalaryAfterFire(int delta)
+    {
+        for(std::set<std::shared_ptr<Employee>, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
+        {
+            (*i)->setSalary(delta);
+        } 
     }
 }

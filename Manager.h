@@ -23,7 +23,7 @@ namespace mtm
             int getSalary()const;
             void addEmployee(std::shared_ptr<Employee> employee);
             void removeEmployee(int employee_id);
-            void setSalary(int salary_to_add);
+            void setSalary(int delta);
             bool getHired() const;
             void setHired(bool hired);
             std::ostream& printShort(std::ostream& stream) const override;
@@ -32,6 +32,8 @@ namespace mtm
             ~Manager() override = default;
             bool isEmployeeIn(int employee_id);
             Manager(const Manager& other) = default;
+            // void updateEmployeeSalaryAfterFire(int employee_id, int salary_to_deduce);
+            void updateEmployeesSalaryAfterFire(int delta);
     };
     class CompareManager 
     {

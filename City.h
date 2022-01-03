@@ -320,6 +320,7 @@ namespace mtm
 
         WorkPlace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
         wp.fireEmployee(employee_id, manager_id);
+        employee_1->setSalary(-(wp.getWorkersSalary()));
 
 
         workplaces.erase((*(workplaces.find(work_place))));
@@ -360,6 +361,8 @@ namespace mtm
 
         WorkPlace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
         wp.fireManager(manager_id);
+        manager_1->setSalary(-(wp.getManagersSalary()));
+        manager_1->updateEmployeesSalaryAfterFire(-(wp.getWorkersSalary()));
 
         workplaces.erase((*(workplaces.find(work_place))));
         workplaces.insert(wp);    
@@ -476,7 +479,7 @@ namespace mtm
                    }
            }
        }
-       stream << std::endl;
+    //    stream << std::endl;
 
     }       
 }

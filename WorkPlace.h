@@ -89,10 +89,11 @@ namespace mtm
     
     void WorkPlace::hireManager(std::shared_ptr<Manager> manager)
     {
-        if(*(managers.find(manager)) == nullptr) // managers is empty
+        if((managers.find(manager)) == managers.end()) // managers is empty
         {
             managers.insert(manager);
             manager->setHired(true);
+            manager->setSalary(this->salary_of_managers);
             return;
         }
 
@@ -110,6 +111,7 @@ namespace mtm
 
         managers.insert(manager);
         manager->setHired(true);
+        manager->setSalary(this->salary_of_managers);
     }
 
     void WorkPlace::fireEmployee(int employee_id, int manager_id)
@@ -124,6 +126,7 @@ namespace mtm
 
         manager_in_workplace->removeEmployee(employee_id);
         //write function that updates salary after fire
+        //also make sure to update the salary of employees if their manager get fired
 
     }
 
