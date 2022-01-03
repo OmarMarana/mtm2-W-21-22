@@ -46,7 +46,7 @@ namespace mtm
         std::shared_ptr<Employee> employee_in_set = *(employees.find(tmp_employee));
         if(employee_in_set->getId() != employee_id)
         {
-            throw EmployeeNotHired();
+            throw EmployeeIsNotHired();
         }
         
         employees.erase(tmp_employee);
@@ -71,7 +71,7 @@ namespace mtm
     std::ostream& Manager::printLong(std::ostream& stream) const 
     {
         stream << getFirstName() << " " << getLastName() << std::endl <<
-        "id - " << getId() << "birth_year - " << getYearOfBirth() << 
+        "id - " << getId() << "birth_year - " << getBirthYear() << 
         "Salary: " << salary <<  std::endl << "Employees:";       // check if there should be a space after Employees:
         
         for(std::set<std::shared_ptr<Employee>, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)

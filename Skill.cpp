@@ -18,6 +18,7 @@ namespace mtm
     Skill& Skill::operator++(int) 
     {
         this->required_points++;
+        return *this;
     }
 
     Skill& Skill::operator+=(int delta)
@@ -35,7 +36,22 @@ namespace mtm
         {
           throw NegativePoints();
         }
-        skill.id += points;////mey add sum from the other side.
+        // skill.id += points;////may add sum from the other side.
+        Skill new_skill(skill);
+        new_skill.required_points += points;
+        return new_skill;
+    }
+    
+    Skill operator+(int points,Skill& skill)
+    {
+        if(points<0)
+        {
+          throw NegativePoints();
+        }
+        // skill.id += points;////mey add sum from the other side.
+        Skill new_skill(skill);
+        new_skill.required_points += points;
+        return new_skill;
     }
 
     std::ostream& operator<<(std::ostream& stream, const Skill& skill)

@@ -19,7 +19,7 @@ namespace mtm
             int getId() const;
             std::string getFirstName()const;
             std::string getLastName()const;
-            int getYearOfBirth()const;
+            int getBirthYear()const;
     
             virtual std::ostream& printShort(std::ostream& stream) const =0;
             virtual std::ostream& printLong(std::ostream& stream) const =0;

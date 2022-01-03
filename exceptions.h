@@ -48,11 +48,11 @@ namespace mtm
             return "A Manager related error has occurred: EmployeeAlreadyHired";
         }
     };
-    class EmployeeNotHired : public Exception
+    class EmployeeIsNotHired : public Exception
     {
         public: const char * what() const noexcept override
         {
-            return "A Manager related error has occurred: EmployeeNotHired";
+            return "A Manager related error has occurred: EmployeeIsNotHired";
         }
     };
 

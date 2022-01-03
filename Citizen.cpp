@@ -16,7 +16,7 @@ namespace mtm
     {
         return last_name;
     }
-    int Citizen::getYearOfBirth() const
+    int Citizen::getBirthYear() const
     {
         return year_of_birth;
     }

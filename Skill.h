@@ -20,6 +20,7 @@ namespace mtm
         Skill& operator++(int); // postfix ++
         Skill& operator+=(int delta);
         friend Skill operator+(Skill& skill,int points);
+        friend Skill operator+(int points,Skill& skill);
         friend std::ostream& operator<<(std::ostream& stream, const Skill& skill);
         friend bool operator==(const Skill& skill1,const Skill& skill2);
         friend bool operator<(const Skill& skill1,const Skill& skill2);
