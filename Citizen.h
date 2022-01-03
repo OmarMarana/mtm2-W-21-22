@@ -23,7 +23,7 @@ namespace mtm
     
             virtual std::ostream& printShort(std::ostream& stream) const =0;
             virtual std::ostream& printLong(std::ostream& stream) const =0;
-            virtual std::shared_ptr<Citizen> clone() const = 0;
+            virtual Citizen* clone() const = 0;
     
             friend bool operator==(const Citizen& Citizen1,const Citizen& Citizen2); 
             friend bool operator<(const Citizen& Citizen1,const Citizen& Citizen2);
@@ -49,7 +49,7 @@ namespace mtm
     class CompareCitizens 
     {
         public:
-            bool operator()(std::shared_ptr<Citizen> citizen1, std::shared_ptr<Citizen> citizen2)
+            bool operator()(Citizen* citizen1, Citizen* citizen2)
             {
                 return citizen1->getId() < citizen2->getId(); 
             }

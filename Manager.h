@@ -12,7 +12,7 @@ namespace mtm
         private:
             int salary;
             bool hired;
-            std::set<std::shared_ptr<Employee>, mtm::CompareEmployee> employees; 
+            std::set<Employee*, mtm::CompareEmployee> employees; 
 
         public:
             
@@ -21,24 +21,25 @@ namespace mtm
             //check if chould define defaluts
             //
             int getSalary()const;
-            void addEmployee(std::shared_ptr<Employee> employee);
+            void addEmployee(Employee* employee);
             void removeEmployee(int employee_id);
             void setSalary(int delta);
             bool getHired() const;
             void setHired(bool hired);
             std::ostream& printShort(std::ostream& stream) const override;
             std::ostream& printLong(std::ostream& stream) const override;
-            std::shared_ptr<Citizen> clone() const override;
+            Citizen* clone() const override;
             ~Manager() override = default;
             bool isEmployeeIn(int employee_id);
             Manager(const Manager& other) = default;
             // void updateEmployeeSalaryAfterFire(int employee_id, int salary_to_deduce);
             void updateEmployeesSalaryAfterFire(int delta);
+            void findEmployeeAndDeduceSalary(int employee_id,int delta);
     };
     class CompareManager 
     {
         public:
-            bool operator()(std::shared_ptr<Manager> manager1, std::shared_ptr<Manager> manager2)
+            bool operator()(Manager* manager1, Manager* manager2)
             {
                 return manager1->getId() < manager2->getId(); 
             }

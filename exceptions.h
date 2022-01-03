@@ -153,6 +153,13 @@ namespace mtm
             return "A City related error has occurred: WorkplaceDoesNotExist";
         }
     };
+    class CitizenAlreadyExists : public Exception
+    {
+        public: const char * what() const noexcept override
+        {
+            return "A City related error has occurred: CitizenAlreadyExists";
+        }
+    };
 
 
     

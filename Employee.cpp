@@ -91,9 +91,9 @@ namespace mtm
         return stream;
     }
 
-    std::shared_ptr<Citizen> Employee::clone() const 
+    Citizen* Employee::clone() const 
     {
-        std::shared_ptr<Citizen> ptr(new Employee(*this));
+        Citizen* ptr(new Employee(*this));
         return ptr;
     }
 

@@ -14,45 +14,53 @@ namespace mtm
     {
         return salary;
     }
-    void Manager::addEmployee(std::shared_ptr<Employee> employee)
+    void Manager::addEmployee(Employee* employee)
     {
-        if(*(employees.find(employee)) == nullptr)
-        {
-            employees.insert(employee);
-            return;
-        }
+        // if(*(employees.find(employee)) == nullptr)
+        // {
+        //     employees.insert(employee);
+        //     return;
+        // }
 
         if(employees.find(employee) == employees.end())
         {
             employees.insert(employee);
             return;
         }
-        std::shared_ptr<Employee> employee_in_set = *(employees.find(employee));
-
+        
+        throw EmployeeAlreadyHired();
+        
+       /* Employee* employee_in_set = *(employees.find(employee));
         if(employee_in_set->getId() == employee->getId())
         {
             throw EmployeeAlreadyHired();
         }
         
-        employees.insert(employee);
+        employees.insert(employee);*/
     }
 
     void Manager::removeEmployee(int employee_id)
     {
         //first_name,std::string last_name,int year_of_birth, int salary,int score
        
-        std::shared_ptr<Employee> tmp_employee(new Employee(employee_id,"a","a",1));
+        
 
-        std::shared_ptr<Employee> employee_in_set = *(employees.find(tmp_employee));
-        if(employee_in_set->getId() != employee_id)
+        Employee tmp_employee(employee_id,"a","a",1);
+
+        if(employees.find(&tmp_employee) == employees.end())
         {
             throw EmployeeIsNotHired();
         }
+
+        // Employee* employee_in_set = *(employees.find(&tmp_employee));
+        // if(employee_in_set->getId() != employee_id)
+        // {
+        //     throw EmployeeIsNotHired();
+        // }
         
-        employees.erase(tmp_employee);
-
-
+        employees.erase(&tmp_employee);
     }
+    
     void Manager::setSalary(int delta)
     {   
         int new_salary = salary + delta;
@@ -71,20 +79,20 @@ namespace mtm
     std::ostream& Manager::printLong(std::ostream& stream) const 
     {
         stream << getFirstName() << " " << getLastName() << std::endl <<
-        "id - " << getId() << "birth_year - " << getBirthYear() << 
-        "Salary: " << salary <<  std::endl << "Employees:";       // check if there should be a space after Employees:
+        "id - " << getId() << " birth_year - " << getBirthYear() << std::endl <<
+        "Salary: " << salary <<  std::endl << "Employees:"<<std::endl;       // check if there should be a space after Employees:
         
-        for(std::set<std::shared_ptr<Employee>, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
+        for(std::set<Employee*, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
         {
-            (*i)->printShort(stream) << std::endl;
+            (*i)->printShort(stream) ;
         } 
-  
+        // stream << std::endl;
         return stream;
     }
     
-    std::shared_ptr<Citizen> Manager::clone() const 
+    Citizen* Manager::clone() const 
     {
-        std::shared_ptr<Citizen> ptr(new Manager(*this));
+        Citizen* ptr(new Manager(*this));
         return ptr; 
     }
 
@@ -101,7 +109,7 @@ namespace mtm
 
     bool Manager::isEmployeeIn(int employee_id)
     {
-        for(std::set<std::shared_ptr<Employee>, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
+        for(std::set<Employee*, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
         {
            if((*i)->getId() == employee_id)
            {
@@ -113,9 +121,16 @@ namespace mtm
 
     void Manager::updateEmployeesSalaryAfterFire(int delta)
     {
-        for(std::set<std::shared_ptr<Employee>, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
+        for(std::set<Employee*, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
         {
             (*i)->setSalary(delta);
         } 
+    }
+
+    void Manager::findEmployeeAndDeduceSalary(int employee_id,int delta)
+    {  
+        Employee tmp_employee(employee_id,"a","a",1);
+        Employee* employee = *(employees.find(&tmp_employee));
+        employee->setSalary(delta);
     }
 }
