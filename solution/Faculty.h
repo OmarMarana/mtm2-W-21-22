@@ -26,16 +26,21 @@ namespace mtm
             
             int id;
             Skill skill;
-            int acquired_points;
+            int added_points;
     	    Condition* condition;            
 
         
     	public:
-            Faculty(int id,  Skill skill, int acquired_points, Condition* condition) : 
-                id(id),  skill(skill), acquired_points(acquired_points) ,condition(condition){};
+            //constructor
+            Faculty(int id,  Skill skill, int added_points, Condition* condition) : 
+                id(id),  skill(skill), added_points(added_points) ,condition(condition){};
+            //return added_points
             int getAddedPoints();
+            //return id
             int getId();
+            //return the skill that the faculty teaches
             Skill getSkill();
+            //teack the employee the skill
             void teach(Employee& employee)const;
     };
     class Condition{

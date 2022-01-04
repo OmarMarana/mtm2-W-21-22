@@ -16,12 +16,6 @@ namespace mtm
     }
     void Manager::addEmployee(Employee* employee)
     {
-        // if(*(employees.find(employee)) == nullptr)
-        // {
-        //     employees.insert(employee);
-        //     return;
-        // }
-
         if(employees.find(employee) == employees.end())
         {
             employees.insert(employee);
@@ -29,35 +23,16 @@ namespace mtm
         }
         
         throw EmployeeAlreadyHired();
-        
-       /* Employee* employee_in_set = *(employees.find(employee));
-        if(employee_in_set->getId() == employee->getId())
-        {
-            throw EmployeeAlreadyHired();
-        }
-        
-        employees.insert(employee);*/
     }
 
     void Manager::removeEmployee(int employee_id)
     {
-        //first_name,std::string last_name,int year_of_birth, int salary,int score
-       
-        
-
         Employee tmp_employee(employee_id,"a","a",1);
 
         if(employees.find(&tmp_employee) == employees.end())
         {
             throw EmployeeIsNotHired();
         }
-
-        // Employee* employee_in_set = *(employees.find(&tmp_employee));
-        // if(employee_in_set->getId() != employee_id)
-        // {
-        //     throw EmployeeIsNotHired();
-        // }
-        
         employees.erase(&tmp_employee);
     }
     

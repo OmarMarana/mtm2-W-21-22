@@ -4,7 +4,6 @@
 #include "Faculty.h"
 #include <iostream>
 
-
 namespace mtm
 {
     class FacultyCondition3: public Condition
@@ -14,6 +13,39 @@ namespace mtm
             return employee->getId() > 0;
         }
     };
+
+    City City::City(const City& city)
+    {
+        this->name = city.name;
+        this->faculties = city.faculties; 
+        this->workplaces = city.workplaces;
+        
+        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = city.citizens.begin(); i !=
+        city.citizens.end(); ++i)
+        {
+            Citizen* citizen = (*i)->clone(); 
+            this->citizens.insert(citizen);
+        }
+    }
+
+    City& City::operator=(const City& city)
+    {
+        this->name = city.name;
+        this->faculties = city.faculties; 
+        this->workplaces = city.workplaces;
+        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
+        citizens.end(); ++i)
+        {
+            delete (*i);
+        }
+        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = city.citizens.begin(); i !=
+        city.citizens.end(); ++i)
+        {
+            Citizen* citizen = (*i)->clone(); 
+            this->citizens.insert(citizen);
+        }    
+    }
+
     City::~City()
     {
         for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
@@ -21,7 +53,6 @@ namespace mtm
         {
             delete (*i);
         }
-
     }
 
     Employee* City::doesEmployeeExist(std::set<Citizen* , CompareCitizens>& citizens, int employee_id)
@@ -147,8 +178,6 @@ namespace mtm
     
     // static void  
 
-    
-    
     void City::hireManagerAtWorkplace(int manager_id, int workplace_id)
     {
         Manager* manager = doesManagerExist(citizens, manager_id);
@@ -288,7 +317,6 @@ namespace mtm
        }
     //    stream << std::endl;
 
-    }       
-  
+    }        
 }
 

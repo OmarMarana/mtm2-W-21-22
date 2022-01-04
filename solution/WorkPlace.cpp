@@ -53,10 +53,6 @@ namespace mtm
             manager_in_workplace->findEmployeeAndDeduceSalary(employee_id, -(this->salary_of_employees));
         }
         manager_in_workplace->removeEmployee(employee_id);
-        
-        //write function that updates salary after fire
-        //also make sure to update the salary of employees if their manager get fired
-
     }
 
     void WorkPlace::fireManager(int manager_id)
@@ -66,11 +62,11 @@ namespace mtm
         {
             throw ManagerIsNotHired();
         }
-        ///update hired flag////////////////
+        
         Manager* manager_in_workplace = *(managers.find(&temp_manager));
         manager_in_workplace->setHired(false);
-        manager_in_workplace->updateEmployeesSalaryAfterFire(-(this->getWorkersSalary()));/////
-        manager_in_workplace->setSalary(-(this->getManagersSalary()));/////
+        manager_in_workplace->updateEmployeesSalaryAfterFire(-(this->getWorkersSalary()));
+        manager_in_workplace->setSalary(-(this->getManagersSalary()));
 
         managers.erase(&temp_manager);
     }

@@ -18,7 +18,7 @@ namespace mtm
 
     void Employee::learnSkill(Skill skill)
     {
-        if( *(skills.find(skill)) == skill) // check if find works as expected
+        if( skills.find(skill) != skills.end()) // check if find works as expected
         {
             throw SkillAlreadyLearned();
         }
@@ -45,11 +45,9 @@ namespace mtm
     bool Employee::hasSkill(int skill_id)
     {
         bool flag = false;
-        std::string tmp_name = "shalom";
-        int tmp_required_points = 10;
-        Skill tmp(skill_id,tmp_name,tmp_required_points);
+        Skill tmp(skill_id, "s", 10);
 
-        if( *(skills.find(tmp)) == tmp)
+        if( skills.find(tmp) != skills.end())
         {
             flag = true;
         }

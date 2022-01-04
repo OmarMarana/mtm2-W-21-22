@@ -16,16 +16,27 @@ namespace mtm
         public:
             Employee(int id,std::string first_name,std::string last_name,int year_of_birth, int salary = 0,int score = 0):
             Citizen(id,first_name,last_name,year_of_birth), salary(salary),score(score){}
+            //return the salary of employee
             int getSalary();
+            //return the score of employee
             int getScore();
+            //give skill to employee
             void learnSkill(Skill skill);
+            //remove skill from employee
             void forgetSkill(int skill_id);
+            //check if the employee has the skill
             bool hasSkill(int skill_id);
+            //change the salary of the employee
             void setSalary(int delta);
+            //change the score of the employee
             void setScore(int delta);
+            //destructor of employee
             ~Employee() override = default;
+            //print short of employee
             std::ostream& printShort(std::ostream& stream) const override;
+            //print long of employee
             std::ostream& printLong(std::ostream& stream) const override;
+            //clone of employee
             Citizen* clone() const override;
     };
     class CompareEmployee 
