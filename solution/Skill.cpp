@@ -1,5 +1,6 @@
 #include "Skill.h"
 #include "exceptions.h"
+#include <iostream>
 
 namespace mtm
 {
@@ -57,7 +58,8 @@ namespace mtm
 
     std::ostream& operator<<(std::ostream& stream, const Skill& skill)
     {
-        ////write
+        stream << skill.getName() << std::endl;
+        return stream;
     }
 
     bool operator==(const Skill& skill1,const Skill& skill2)

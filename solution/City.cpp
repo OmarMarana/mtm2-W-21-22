@@ -14,6 +14,15 @@ namespace mtm
             return employee->getId() > 0;
         }
     };
+    City::~City()
+    {
+        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
+        citizens.end(); ++i)
+        {
+            delete (*i);
+        }
+
+    }
 
     Employee* City::doesEmployeeExist(std::set<Citizen* , CompareCitizens>& citizens, int employee_id)
     {

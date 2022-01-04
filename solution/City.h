@@ -41,6 +41,7 @@ namespace mtm
         
         public:
             City(std::string name) : name(name) {}
+            ~City();
             void addEmployee(int id,std::string first_name,std::string last_name,int year_of_birth);
             void addManager(int id,std::string first_name,std::string last_name,int year_of_birth);
             
