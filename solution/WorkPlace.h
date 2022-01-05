@@ -37,7 +37,7 @@ namespace mtm
         //ad the employee to the workplace if he satisfies the condition 
         void hireEmployee(HiringCondition condition ,Employee* employee,int id_of_manager);
         //ad the manager to the workplace
-        void hireManager(Manager* manager);
+        void hireManager(Manager* manager) ;
         //remove the employee from the workplace
         void fireEmployee(int employee_id, int manager_id);
         //remove the manager from the workplace

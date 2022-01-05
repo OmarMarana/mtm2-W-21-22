@@ -14,37 +14,37 @@ namespace mtm
         }
     };
 
-    City City::City(const City& city)
-    {
-        this->name = city.name;
-        this->faculties = city.faculties; 
-        this->workplaces = city.workplaces;
-        
-        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = city.citizens.begin(); i !=
-        city.citizens.end(); ++i)
-        {
-            Citizen* citizen = (*i)->clone(); 
-            this->citizens.insert(citizen);
-        }
-    }
+//    City City::City(const City& city)
+//    {
+//        this->name = city.name;
+//        this->faculties = city.faculties;
+//        this->workplaces = city.workplaces;
+//
+//        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = city.citizens.begin(); i !=
+//        city.citizens.end(); ++i)
+//        {
+//            Citizen* citizen = (*i)->clone();
+//            this->citizens.insert(citizen);
+//        }
+//    }
 
-    City& City::operator=(const City& city)
-    {
-        this->name = city.name;
-        this->faculties = city.faculties; 
-        this->workplaces = city.workplaces;
-        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
-        citizens.end(); ++i)
-        {
-            delete (*i);
-        }
-        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = city.citizens.begin(); i !=
-        city.citizens.end(); ++i)
-        {
-            Citizen* citizen = (*i)->clone(); 
-            this->citizens.insert(citizen);
-        }    
-    }
+//    City& City::operator=(const City& city)
+//    {
+//        this->name = city.name;
+//        this->faculties = city.faculties;
+//        this->workplaces = city.workplaces;
+//        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
+//        citizens.end(); ++i)
+//        {
+//            delete (*i);
+//        }
+//        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = city.citizens.begin(); i !=
+//        city.citizens.end(); ++i)
+//        {
+//            Citizen* citizen = (*i)->clone();
+//            this->citizens.insert(citizen);
+//        }
+//    }
 
     City::~City()
     {

@@ -1,10 +1,10 @@
 #include <iostream>
-#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/Employee.h"
-#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/Manager.h"
-#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/WorkPlace.h"
-#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/City.h"
+#include "../solution/Employee.h"
+#include "../solution/Manager.h"
+#include "../solution/WorkPlace.h"
+#include "../solution/City.h"
 #include <assert.h>
-#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/exceptions.h"
+#include "../solution/exceptions.h"
 using namespace mtm;
 using std::cout;
 using std::endl;

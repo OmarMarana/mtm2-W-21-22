@@ -55,7 +55,7 @@ namespace mtm
     template<class Condition>
     int Faculty<Condition>::getAddedPoints()
     {
-        return acquired_points;
+        return added_points;
     }
 
     template<class Condition>
@@ -76,7 +76,7 @@ namespace mtm
         if((*condition)(&employee))
         {
             employee.learnSkill(skill);
-            employee.setScore(acquired_points);
+            employee.setScore(added_points);
         }
 
         else

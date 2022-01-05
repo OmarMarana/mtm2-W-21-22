@@ -18,6 +18,6 @@ set(CMAKE_CPP_FLAGS ${MTM_FLAGS_DEBUG})
 
 
 # Add the names of your source files here
-set(CPP_FILES Citizen.cpp Skill.cpp Manager.cpp Employee.cpp Faculty.cpp WorkPlace.cpp City.cpp provided/city_test.cpp)
+set(CPP_FILES Citizen.cpp Skill.cpp Manager.cpp Employee.cpp Faculty.cpp WorkPlace.cpp City.cpp ../provided/city_test.cpp)
 
 add_executable(mtm2exe ${CPP_FILES})
