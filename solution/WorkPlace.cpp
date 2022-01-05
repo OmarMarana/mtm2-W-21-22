@@ -4,6 +4,7 @@
 
 namespace mtm
 {
+    
     int WorkPlace::getManagersSalary() const
     {
         return salary_of_managers;

@@ -5,11 +5,41 @@
 namespace mtm
 {
 
-    // void Manager::updateEmployeeSalaryAfterFire(int employee_id, int salary_to_deduce)
-    // {
+    
+    Manager::Manager(const Manager& other) : Citizen(other.getId(), other.getFirstName(), other.getLastName(), other.getBirthYear())
+    {
+        salary = other.salary;
+        hired = other.hired;
+        for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
+        other.employees.end(); ++i)
+        {   
+            Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
+            employees.insert(employee);
+        }
+    }
 
+    Manager& Manager::operator=(const Manager& other)
+    {
+        hired = other.hired;
+        salary = other.salary;
+        for(std::set<Employee*, mtm::CompareEmployee>::iterator i = employees.begin(); i !=
+        employees.end(); ++i)
+        {   
+            delete (*i);
+        }
+        
+        employees.clear();
 
-    // }
+        for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
+        other.employees.end(); ++i)
+        {   
+            Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
+            employees.insert(employee);
+        }
+        
+        return *this;
+    }
+
     int Manager::getSalary()const
     {
         return salary;

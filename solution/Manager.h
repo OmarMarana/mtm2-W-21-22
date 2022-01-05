@@ -20,20 +20,34 @@ namespace mtm
             int salary = 0, bool hired = false):Citizen(id, first_name, last_name,year_of_birth), salary(salary), hired(hired) {}
             //check if chould define defaluts
             //
+            Manager(const Manager& other);
+            Manager& operator=(const Manager& other);
+            //returns the salary of the manager
             int getSalary()const;
+            //add employee to the set employees of the manager
             void addEmployee(Employee* employee);
+            //remove employee from the set employees of the manager
             void removeEmployee(int employee_id);
+            //adds delta to the salary of the manager
             void setSalary(int delta);
+            //checks if the manager get hired
             bool getHired() const;
+            //update to hired if the manager is hired
             void setHired(bool hired);
+            //print short of manager
             std::ostream& printShort(std::ostream& stream) const override;
+            //print long of manager
             std::ostream& printLong(std::ostream& stream) const override;
+            //clone of manager
             Citizen* clone() const override;
+            //destructor of manager
             ~Manager() override = default;
+            //checks if the employee is working for the manager 
             bool isEmployeeIn(int employee_id);
-            Manager(const Manager& other) = default;
             // void updateEmployeeSalaryAfterFire(int employee_id, int salary_to_deduce);
+            //update employees salary After fire
             void updateEmployeesSalaryAfterFire(int delta);
+            //deduce the salary of the employee after firing him
             void findEmployeeAndDeduceSalary(int employee_id,int delta);
     };
     class CompareManager 

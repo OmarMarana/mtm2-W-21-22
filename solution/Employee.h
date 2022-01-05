@@ -16,6 +16,8 @@ namespace mtm
         public:
             Employee(int id,std::string first_name,std::string last_name,int year_of_birth, int salary = 0,int score = 0):
             Citizen(id,first_name,last_name,year_of_birth), salary(salary),score(score){}
+            Employee(const Employee& other) = default;
+            Employee& operator=(const Employee& other) = default;
             //return the salary of employee
             int getSalary();
             //return the score of employee

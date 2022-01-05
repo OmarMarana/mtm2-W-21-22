@@ -22,6 +22,7 @@ namespace mtm
         public:
         WorkPlace(int id,std::string name,int salary_of_employees,int salary_of_managers) : id(id),
         name(name), salary_of_employees(salary_of_employees), salary_of_managers(salary_of_managers) {}
+        // WorkPlace(const WorkPlace& other);
         //work place destructor
         ~WorkPlace() = default;
         //return the salary of the manager
