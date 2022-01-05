@@ -22,7 +22,8 @@ namespace mtm
         public:
         WorkPlace(int id,std::string name,int salary_of_employees,int salary_of_managers) : id(id),
         name(name), salary_of_employees(salary_of_employees), salary_of_managers(salary_of_managers) {}
-        // WorkPlace(const WorkPlace& other);
+        WorkPlace(const WorkPlace& other);
+        WorkPlace& operator=(const WorkPlace& other);
         //work place destructor
         ~WorkPlace() = default;
         //return the salary of the manager
@@ -47,6 +48,7 @@ namespace mtm
         bool isWorkingHere(int employee_id);
         //print format for workplace
         friend std::ostream& operator<<(std::ostream& stream, const WorkPlace& work_place);
+        Employee* FindEmployee(int employee_id);
     };
      
     class CompareWorkplaces

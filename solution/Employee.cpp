@@ -77,8 +77,8 @@ namespace mtm
     std::ostream& Employee::printLong(std::ostream& stream) const
     {
         stream << getFirstName() << " " << getLastName() << std::endl 
-        << "id - " << getId() << "birth_year - " << getBirthYear() << std::endl 
-        <<  "Salary: " << salary << "Score: " << score << "Skills: " << std::endl;
+        << "id - " << getId() << " birth_year - " << getBirthYear() << std::endl 
+        <<  "Salary: " << salary << " Score: " << score << " Skills: " << std::endl;
 
         for(std::set<Skill>::iterator i = skills.begin(); i != skills.end(); ++i)
         {

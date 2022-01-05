@@ -5,7 +5,11 @@
 namespace mtm
 {
 
-    
+    std::set<Employee*, mtm::CompareEmployee>& Manager::getEmployees()
+    {
+        return employees;
+    }
+
     Manager::Manager(const Manager& other) : Citizen(other.getId(), other.getFirstName(), other.getLastName(), other.getBirthYear())
     {
         salary = other.salary;
@@ -122,6 +126,19 @@ namespace mtm
            }
         } 
         return false;
+    }
+
+    Employee* Manager::getEmployee(int employee_id)
+    {
+        for(std::set<Employee*, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
+        {
+           if((*i)->getId() == employee_id)
+           {
+               return *i;
+           }
+        } 
+        return nullptr;
+
     }
 
     void Manager::updateEmployeesSalaryAfterFire(int delta)

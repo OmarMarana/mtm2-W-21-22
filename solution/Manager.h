@@ -49,6 +49,9 @@ namespace mtm
             void updateEmployeesSalaryAfterFire(int delta);
             //deduce the salary of the employee after firing him
             void findEmployeeAndDeduceSalary(int employee_id,int delta);
+            std::set<Employee*, mtm::CompareEmployee>& getEmployees();
+            Employee* getEmployee(int employee_id);
+
     };
     class CompareManager 
     {
