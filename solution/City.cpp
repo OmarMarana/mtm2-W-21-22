@@ -149,8 +149,9 @@ namespace mtm
 
     void City::createWorkplace(int id,std::string name,int salary_of_employees,int salary_of_managers)
     {
-        WorkPlace new_workplace(id,name,salary_of_employees,salary_of_managers);
-
+        // WorkPlace new_workplace(id,name,salary_of_employees,salary_of_managers);
+        std::shared_ptr<WorkPlace> new_workplace(new WorkPlace(id,name,salary_of_employees,salary_of_managers));
+        // std::shared_ptr<Employee> new_employee(new Employee(id,first_name,last_name ,year_of_birth));
         if(workplaces.find(new_workplace) != workplaces.end() )
         {
             throw WorkplaceAlreadyExists();
@@ -182,17 +183,20 @@ namespace mtm
     {
         Manager* manager = doesManagerExist(citizens, manager_id);
        
-        WorkPlace work_place(workplace_id,"F",0,0);
+        //WorkPlace work_place(workplace_id,"F",0,0);
+        std::shared_ptr<WorkPlace> work_place(new WorkPlace(workplace_id,"F",0,0));
         if(workplaces.find(work_place) == workplaces.end())
         {
             throw WorkplaceDoesNotExist();
         }
 
-      WorkPlace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
-      wp.hireManager(manager);
 
-      workplaces.erase((*(workplaces.find(work_place))));
-      workplaces.insert(wp);
+        (*(workplaces.find(work_place)))->hireManager(manager);
+    //   WorkPlace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
+    //   wp.hireManager(manager);
+
+    //   workplaces.erase((*(workplaces.find(work_place))));
+    //   workplaces.insert(wp);
       /*
       possible solutions:
       1.change set to vector and every time we used set.find we should use foreach.vecor
@@ -211,19 +215,22 @@ namespace mtm
         doesEmployeeExist(citizens, employee_id);
         doesManagerExist(citizens, manager_id);
 
-        WorkPlace work_place(workplace_id,"F",0,0);
+        // WorkPlace work_place(workplace_id,"F",0,0);
+        std::shared_ptr<WorkPlace> work_place(new WorkPlace(workplace_id,"F",0,0));
         if(workplaces.find(work_place) == workplaces.end())
         {
             throw WorkplaceDoesNotExist();
         }
 
-        WorkPlace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
-        wp.fireEmployee(employee_id, manager_id);
-        // employee_1->setSalary(-(wp.getWorkersSalary()));
+        (*(workplaces.find(work_place)))->fireEmployee(employee_id, manager_id);
+
+        // WorkPlace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
+        // wp.fireEmployee(employee_id, manager_id);
+        // // employee_1->setSalary(-(wp.getWorkersSalary()));
 
 
-        workplaces.erase((*(workplaces.find(work_place))));
-        workplaces.insert(wp);
+        // workplaces.erase((*(workplaces.find(work_place))));
+        // workplaces.insert(wp);
 
         
     }
@@ -232,19 +239,22 @@ namespace mtm
     {        
         Manager* manager = doesManagerExist(citizens, manager_id);
 
-        WorkPlace work_place(workplace_id,"F",0,0);
+        // WorkPlace work_place(workplace_id,"F",0,0);
+        std::shared_ptr<WorkPlace> work_place(new WorkPlace(workplace_id,"F",0,0));
         if(workplaces.find(work_place) == workplaces.end())
         {
             throw WorkplaceDoesNotExist();
         }
 
-        WorkPlace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
-        wp.fireManager(manager_id);
-        manager->setSalary(-(wp.getManagersSalary()));
+
+        (*(workplaces.find(work_place)))->fireManager(manager_id);
+        // WorkPlace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
+        // wp.fireManager(manager_id);
+        manager->setSalary(-((*(workplaces.find(work_place)))->getManagersSalary()));
         // manager_1->updateEmployeesSalaryAfterFire(-(wp.getWorkersSalary()));/////
 
-        workplaces.erase((*(workplaces.find(work_place))));
-        workplaces.insert(wp);    
+        // workplaces.erase((*(workplaces.find(work_place))));
+        // workplaces.insert(wp);    
     }
 
     int  City::getAllAboveSalary(std::ostream& stream, int salary)
@@ -283,13 +293,13 @@ namespace mtm
         doesEmployeeExist(citizens, employee_id2);
 
         bool working_at_the_same_place = false;
-        for(std::set<WorkPlace, CompareWorkplaces>::iterator i = workplaces.begin(); i !=
+        for(std::set<std::shared_ptr<WorkPlace>, CompareWorkplaces>::iterator i = workplaces.begin(); i !=
         workplaces.end(); ++i)
         {
-            WorkPlace wp = (*i);
-            if(wp.isWorkingHere(employee_id1))
+            // WorkPlace wp = (*i);
+            if((*i)->isWorkingHere(employee_id1))
             {
-                working_at_the_same_place = wp.isWorkingHere(employee_id2);
+                working_at_the_same_place = (*i)->isWorkingHere(employee_id2);
                 if(working_at_the_same_place == true)
                 {
                     break;

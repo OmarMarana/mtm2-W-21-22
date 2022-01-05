@@ -36,7 +36,7 @@ namespace mtm
             std::set<Citizen* , CompareCitizens> citizens;
             
             std::set<Faculty<Condition>, CompareFaculties<Condition>> faculties; // maybe change set to vector here
-            std::set<WorkPlace, CompareWorkplaces> workplaces;
+            std::set<std::shared_ptr<WorkPlace>, CompareWorkplaces> workplaces;
         
         public:
             //constructor
@@ -87,16 +87,18 @@ namespace mtm
         doesManagerExist(this->citizens, manager_id);
 
         
-        WorkPlace work_place(workplace_id,"F",0,0);
+        // WorkPlace work_place(workplace_id,"F",0,0);
+        std::shared_ptr<WorkPlace> work_place(new WorkPlace(workplace_id,"F",0,0));
         if(workplaces.find(work_place) == workplaces.end())
         {
             throw WorkplaceDoesNotExist();
         }
         
-        WorkPlace wp = (*(workplaces.find(work_place)));
-        wp.hireEmployee(Condition ,employee ,manager_id);
-        workplaces.erase((*(workplaces.find(work_place))));
-        workplaces.insert(wp);
+        (*(workplaces.find(work_place)))->hireEmployee(Condition ,employee ,manager_id);
+        // WorkPlace wp = (*(workplaces.find(work_place)));
+        // wp.hireEmployee(Condition ,employee ,manager_id);
+        // workplaces.erase((*(workplaces.find(work_place))));
+        // workplaces.insert(wp);
     }
     
 }

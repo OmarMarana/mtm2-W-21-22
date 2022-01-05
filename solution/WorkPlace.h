@@ -51,9 +51,9 @@ namespace mtm
     class CompareWorkplaces
     {
         public:
-            bool operator()( WorkPlace workPlace1, WorkPlace workPlace2)
+            bool operator()( std::shared_ptr<WorkPlace> workPlace1, std::shared_ptr<WorkPlace> workPlace2)
             {
-                return workPlace1.getId() < workPlace2.getId(); 
+                return workPlace1->getId() < workPlace2->getId(); 
             }
     };
 
