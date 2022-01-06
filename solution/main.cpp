@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Employee.h"
 #include "Manager.h"
-#include "WorkPlace.h"
+#include "Workplace.h"
 //#include "City.h"
 #include <assert.h>
 #include "exceptions.h"
@@ -21,36 +21,42 @@ public:
 
 int main()
 {
+
+    Skill s1(1,"Python",15);
+    s1 = 1 + s1 + 1;
     
-    Employee e1(10,"name","1", 2001);
-    Employee e2(7,"name","2", 2002);
-    Employee e3(11,"name","3", 2003);
-    Employee e4(1,"name","4", 2004);
+    std::cout << s1.getRequiredPoints() << "\n";
 
 
-    Manager m1(100,"o","m", 2001);
-    Manager m2(200,"w","e", 2001);
+    // Employee e1(10,"name","1", 2001);
+    // Employee e2(7,"name","2", 2002);
+    // Employee e3(11,"name","3", 2003);
+    // Employee e4(1,"name","4", 2004);
+
+
+    // Manager m1(100,"o","m", 2001);
+    // Manager m2(200,"w","e", 2001);
 
     
-    Skill s1(4,"s1",0);
-    Skill s2(3,"s2",0);
-    Skill s3(2,"s3",0);
+    // Skill s1(4,"s1",0);
+    // Skill s2(3,"s2",0);
+    // Skill s3(2,"s3",0);
 
 
-    e1.learnSkill(s1);
-    e1.learnSkill(s2);
-    e1.learnSkill(s3);
+    // e1.learnSkill(s1);
+    // e1.learnSkill(s2);
+    // e1.learnSkill(s3);
 
 
-    m1.addEmployee(&e1);
+    // m1.addEmployee(&e1);
 
-    m2.addEmployee(&e1);
-    m2.addEmployee(&e2);
+    // m2.addEmployee(&e1);
+    // m2.addEmployee(&e2);
 
-    m1 = m2;
+    // m1 = m2;
 
     // HiringCondition c;
-    // WorkPlace wp1(10,"meta",100,200);
+    // Workplace wp1(10,"meta",100,200);
 
     // wp1.hireManager(&m1);
     // wp1.hireEmployee(c,&e1,100);
@@ -62,7 +68,7 @@ int main()
 
     // // Employee* eee1 = wp1.FindEmployee(1);
 
-    // WorkPlace wp2(20,"google",300,400);
+    // Workplace wp2(20,"google",300,400);
     // wp2.hireManager(&m2);
     // wp2.hireEmployee(c,&e3,200);
     // wp2.hireEmployee(c,&e4,200);

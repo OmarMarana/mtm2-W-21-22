@@ -56,7 +56,7 @@ namespace mtm
         }
     };
 
-    //WorkPlace
+    //Workplace
     class EmployeeNotSelected : public Exception
     {
         public: const char * what() const noexcept override

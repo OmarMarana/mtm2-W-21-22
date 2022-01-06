@@ -4,7 +4,7 @@
 #include <memory>
 #include "Citizen.h"
 #include "Faculty.h"
-#include "WorkPlace.h"
+#include "Workplace.h"
 
 namespace mtm 
 
@@ -36,7 +36,7 @@ namespace mtm
             std::set<Citizen* , CompareCitizens> citizens;
             
             std::set<Faculty<Condition>, CompareFaculties<Condition>> faculties; // maybe change set to vector here
-            std::set<std::shared_ptr<WorkPlace>, CompareWorkplaces> workplaces;
+            std::set<std::shared_ptr<Workplace>, CompareWorkplaces> workplaces;
         
         public:
             //constructor
@@ -60,7 +60,7 @@ namespace mtm
             //hire an employee if the condition is satisfied
             template<class HiringCondition>
             void hireEmployeeAtWorkplace(HiringCondition condition,int employee_id, int manager_id, int workplace_id);
-            //hire a manager at a workplace
+            //hire a manager at a Workplace
             void hireManagerAtWorkplace(int manager_id, int workplace_id);
             //fire an employee
             void fireEmployeeAtWorkplace(int employee_id, int manager_id, int workplace_id);
@@ -88,15 +88,15 @@ namespace mtm
         doesManagerExist(this->citizens, manager_id);
 
         
-        // WorkPlace work_place(workplace_id,"F",0,0);
-        std::shared_ptr<WorkPlace> work_place(new WorkPlace(workplace_id,"F",0,0));
+        // Workplace work_place(workplace_id,"F",0,0);
+        std::shared_ptr<Workplace> work_place(new Workplace(workplace_id,"F",0,0));
         if(workplaces.find(work_place) == workplaces.end())
         {
             throw WorkplaceDoesNotExist();
         }
         
         (*(workplaces.find(work_place)))->hireEmployee(Condition ,employee ,manager_id);
-        // WorkPlace wp = (*(workplaces.find(work_place)));
+        // Workplace wp = (*(workplaces.find(work_place)));
         // wp.hireEmployee(Condition ,employee ,manager_id);
         // workplaces.erase((*(workplaces.find(work_place))));
         // workplaces.insert(wp);

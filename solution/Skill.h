@@ -25,9 +25,9 @@ namespace mtm
         //Increment the skill required_points by delta
         Skill& operator+=(int delta);
         //opertaor plus to the left side
-        friend Skill operator+(Skill& skill,int points);
+        friend Skill operator+(Skill skill,int points);
         //opertaor plus to the rigth side
-        friend Skill operator+(int points,Skill& skill);
+        friend Skill operator+(int points,Skill skill);
         //print format for Skill
         friend std::ostream& operator<<(std::ostream& stream, const Skill& skill);
         // == for skill via ids

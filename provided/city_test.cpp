@@ -1,7 +1,7 @@
 #include <iostream>
 #include "../solution/Employee.h"
 #include "../solution/Manager.h"
-#include "../solution/WorkPlace.h"
+#include "../solution/Workplace.h"
 #include "../solution/City.h"
 #include <assert.h>
 #include "../solution/exceptions.h"

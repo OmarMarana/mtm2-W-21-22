@@ -10,7 +10,7 @@ namespace mtm
 {
                        
     ////typedef void*(*ConditionToCheck)(Condition*);
-    class WorkPlace
+    class Workplace
     {
         private:
             int id;
@@ -23,12 +23,12 @@ namespace mtm
             std::vector<std::shared_ptr<Employee>> empls;
 
         public:
-        WorkPlace(int id,std::string name,int salary_of_employees,int salary_of_managers) : id(id),
+        Workplace(int id,std::string name,int salary_of_employees,int salary_of_managers) : id(id),
         name(name), salary_of_employees(salary_of_employees), salary_of_managers(salary_of_managers) {}
-        WorkPlace(const WorkPlace& other);
-        WorkPlace& operator=(const WorkPlace& other);
+        Workplace(const Workplace& other);
+        Workplace& operator=(const Workplace& other);
         //work place destructor
-        ~WorkPlace() = default;
+        ~Workplace() = default;
         //return the salary of the manager
         int getManagersSalary()const;
         //return the salary of the employee
@@ -39,18 +39,18 @@ namespace mtm
         int getId()const;
         
         template<class HiringCondition>
-        //ad the employee to the workplace if he satisfies the condition 
+        //ad the employee to the Workplace if he satisfies the condition 
         void hireEmployee(HiringCondition condition ,Employee* employee,int id_of_manager);
-        //ad the manager to the workplace
+        //ad the manager to the Workplace
         void hireManager(Manager* manager) ;
-        //remove the employee from the workplace
+        //remove the employee from the Workplace
         void fireEmployee(int employee_id, int manager_id);
-        //remove the manager from the workplace
+        //remove the manager from the Workplace
         void fireManager(int manager_id);
-        //check if the manager work in the workplace
+        //check if the manager work in the Workplace
         bool isWorkingHere(int employee_id);
-        //print format for workplace
-        friend std::ostream& operator<<(std::ostream& stream, const WorkPlace& work_place);
+        //print format for Workplace
+        friend std::ostream& operator<<(std::ostream& stream, const Workplace& work_place);
         Employee* FindEmployee(int employee_id);
         std::set<Manager*, CompareManager>& getManagers();
 
@@ -59,14 +59,14 @@ namespace mtm
     class CompareWorkplaces
     {
         public:
-            bool operator()( std::shared_ptr<WorkPlace> workPlace1, std::shared_ptr<WorkPlace> workPlace2)
+            bool operator()( std::shared_ptr<Workplace> workPlace1, std::shared_ptr<Workplace> workPlace2)
             {
                 return workPlace1->getId() < workPlace2->getId(); 
             }
     };
 
     template<class HiringCondition>
-    void WorkPlace::hireEmployee(HiringCondition condition ,Employee* employee,int id_of_manager)
+    void Workplace::hireEmployee(HiringCondition condition ,Employee* employee,int id_of_manager)
     {
         if(condition(employee) == false)
         {

@@ -32,7 +32,7 @@ namespace mtm
        return *this;
     }
 
-    Skill operator+(Skill& skill,int points)
+    Skill operator+(Skill skill,int points)
     {   
         if(points<0)
         {
@@ -44,7 +44,7 @@ namespace mtm
         return new_skill;
     }
     
-    Skill operator+(int points,Skill& skill)
+    Skill operator+(int points,Skill skill)
     {
         if(points<0)
         {

@@ -1,11 +1,11 @@
-#include "WorkPlace.h"
+#include "Workplace.h"
 #include "exceptions.h"
 #include <iostream>
 #include <vector>
 namespace mtm
 {
     
-    WorkPlace::WorkPlace(const WorkPlace& other)
+    Workplace::Workplace(const Workplace& other)
     {
         id = other.id;
         name = other.name;
@@ -47,7 +47,7 @@ namespace mtm
         }
     }
 
-    WorkPlace& WorkPlace::operator=(const WorkPlace& other)
+    Workplace& Workplace::operator=(const Workplace& other)
     {
         id = other.id;
         name = other.name;
@@ -99,7 +99,7 @@ namespace mtm
 
 
 
-    Employee* WorkPlace::FindEmployee(int employee_id)
+    Employee* Workplace::FindEmployee(int employee_id)
     {
         for(std::set<Manager*, CompareManager> ::iterator i = managers.begin(); i !=
         managers.end(); ++i)
@@ -113,30 +113,30 @@ namespace mtm
         return nullptr;
     }
 
-    std::set<Manager*, CompareManager>& WorkPlace::getManagers()
+    std::set<Manager*, CompareManager>& Workplace::getManagers()
     {
         return managers;
     }
 
 
-    int WorkPlace::getManagersSalary() const
+    int Workplace::getManagersSalary() const
     {
         return salary_of_managers;
     }
-    int WorkPlace::getWorkersSalary()const
+    int Workplace::getWorkersSalary()const
     {
         return salary_of_employees;
     }
-    std::string WorkPlace::getName()const
+    std::string Workplace::getName()const
     {
         return name;
     }
-    int WorkPlace::getId()const
+    int Workplace::getId()const
     {
         return id;
     }
     
-    void WorkPlace::hireManager(Manager* manager)
+    void Workplace::hireManager(Manager* manager)
     {
         if((managers.find(manager)) != managers.end()) // managers is empty
         {
@@ -153,7 +153,7 @@ namespace mtm
         manager->setSalary(this->salary_of_managers);
     }
 
-    void WorkPlace::fireEmployee(int employee_id, int manager_id)
+    void Workplace::fireEmployee(int employee_id, int manager_id)
     {
 
         Manager temp_manager(manager_id,"a","a",1);
@@ -170,7 +170,7 @@ namespace mtm
         manager_in_workplace->removeEmployee(employee_id);
     }
 
-    void WorkPlace::fireManager(int manager_id)
+    void Workplace::fireManager(int manager_id)
     {    
         Manager temp_manager(manager_id,"a","a",1);
         if(managers.find(&temp_manager) == managers.end())
@@ -186,7 +186,7 @@ namespace mtm
         managers.erase(&temp_manager);
     }
 
-    std::ostream& operator<<(std::ostream& stream, const WorkPlace& work_place)
+    std::ostream& operator<<(std::ostream& stream, const Workplace& work_place)
     {
         stream << "Workplace name - " << work_place.getName() ;
         
@@ -207,7 +207,7 @@ namespace mtm
         return stream;
     }
 
-    bool WorkPlace::isWorkingHere(int employee_id)
+    bool Workplace::isWorkingHere(int employee_id)
     {
         bool found = false;
         for(std::set<Manager*, CompareManager> ::iterator i = managers.begin(); i !=
