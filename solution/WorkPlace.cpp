@@ -18,6 +18,10 @@ namespace mtm
             Manager *manager = new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
              (*i)->getSalary(), false);
 
+            // std::shared_ptr<Manager> manager(new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
+            //  (*i)->getSalary(), false));
+
+
              for(std::set<Employee*, mtm::CompareEmployee>::iterator j = (*i)->getEmployees().begin(); j !=
                 (*i)->getEmployees().end(); ++j)
             {
@@ -50,13 +54,20 @@ namespace mtm
         salary_of_managers = other.salary_of_managers;
         salary_of_employees = other.salary_of_employees;
         managers.clear();
+        empls.clear();
+        mngrs.clear();
         std::vector<int> existing_employees; 
         for(std::set<Manager*, CompareManager>::iterator i = other.managers.begin(); i !=
         other.managers.end(); ++i)
         {
-            Manager *manager = new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
-             (*i)->getSalary(), false);
+            // Manager *manager = new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
+            //  (*i)->getSalary(), false);
 
+            std::shared_ptr<Manager> manager(new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
+             (*i)->getSalary(), false));
+
+
+            mngrs.push_back(manager);
              for(std::set<Employee*, mtm::CompareEmployee>::iterator j = (*i)->getEmployees().begin(); j !=
                 (*i)->getEmployees().end(); ++j)
             {
@@ -68,17 +79,19 @@ namespace mtm
                     {
                         already_exists = true;
                         existing_employee = this->FindEmployee((*j)->getId());
-                        manager->addEmployee(existing_employee);
+                        manager.get()->addEmployee(existing_employee);
                     }
                 }
                 if(already_exists == false)
                 {
-                    Employee * employee = new Employee(*(*j));
-                    manager->addEmployee(employee);
+                    // Employee * employee = new Employee(*(*j));
+                    std::shared_ptr<Employee> employee(new Employee(*(*j)));
+                    empls.push_back(employee);
+                    manager.get()->addEmployee(employee.get());
                     existing_employees.push_back((*j)->getId());
                 }
             }
-            hireManager(manager);
+            hireManager(manager.get());
         }
 
         return *this;
@@ -99,6 +112,12 @@ namespace mtm
         }
         return nullptr;
     }
+
+    std::set<Manager*, CompareManager>& WorkPlace::getManagers()
+    {
+        return managers;
+    }
+
 
     int WorkPlace::getManagersSalary() const
     {

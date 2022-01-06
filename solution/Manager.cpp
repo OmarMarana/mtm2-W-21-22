@@ -17,8 +17,10 @@ namespace mtm
         for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
         other.employees.end(); ++i)
         {   
-            Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
-            employees.insert(employee);
+            // Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
+            std::shared_ptr<Employee> employee(new Employee(*(*i)));
+            empls.push_back(employee);
+            employees.insert(employee.get());
         }
     }
 
@@ -26,19 +28,22 @@ namespace mtm
     {
         hired = other.hired;
         salary = other.salary;
-        for(std::set<Employee*, mtm::CompareEmployee>::iterator i = employees.begin(); i !=
-        employees.end(); ++i)
-        {   
-            delete (*i);
-        }
-        
+        // for(std::set<Employee*, mtm::CompareEmployee>::iterator i = employees.begin(); i !=
+        // employees.end(); ++i)
+        // {   
+        //     delete (*i);
+        // }
+
         employees.clear();
+        empls.clear();
 
         for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
         other.employees.end(); ++i)
         {   
-            Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
-            employees.insert(employee);
+            // Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
+            std::shared_ptr<Employee> employee(new Employee(*(*i)));
+            empls.push_back(employee);
+            employees.insert(employee.get());
         }
         
         return *this;

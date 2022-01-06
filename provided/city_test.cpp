@@ -61,6 +61,8 @@ int main() {
     city.getAllAboveSalary(cout,1000);
     cout << endl << "printAllEmployeesWithSkill output" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
+
+    City city2 = city;
     
     return 0;
 }

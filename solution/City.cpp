@@ -14,19 +14,48 @@ namespace mtm
         }
     };
 
-//    City City::City(const City& city)
-//    {
-//        this->name = city.name;
-//        this->faculties = city.faculties;
-//        this->workplaces = city.workplaces;
-//
-//        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = city.citizens.begin(); i !=
-//        city.citizens.end(); ++i)
-//        {
-//            Citizen* citizen = (*i)->clone();
-//            this->citizens.insert(citizen);
-//        }
-//    }
+    class HiringConditionO {
+        public:
+            bool operator()(Employee *emp) {
+                return true;
+            }
+    };
+
+   City::City(const City& other)
+   {
+       this->name = other.name;
+       this->faculties = other.faculties;
+        
+        for(std::set<std::shared_ptr<WorkPlace>, CompareWorkplaces>::iterator wp = other.workplaces.begin(); wp !=
+        other.workplaces.end(); ++wp)
+        {
+            this->createWorkplace((*wp)->getId(),(*wp)->getName(),(*wp)->getWorkersSalary(),(*wp)->getManagersSalary());
+            
+            for(std::set<Manager*, CompareManager>::iterator mngr = (*wp)->getManagers().begin(); mngr !=
+            (*wp)->getManagers().end(); ++mngr)
+            {
+                this->addManager((*mngr)->getId(),(*mngr)->getFirstName(),(*mngr)->getLastName(),(*mngr)->getBirthYear());
+                this->hireManagerAtWorkplace((*mngr)->getId(),(*wp)->getId());
+
+                for(std::set<Employee*, mtm::CompareEmployee>::iterator emp = (*mngr)->getEmployees().begin(); emp !=
+                (*mngr)->getEmployees().end(); ++emp)
+                {
+                    HiringConditionO c1;
+                    if(this->doesExist((*emp)->getId()))
+                    {   
+                        
+                        this->hireEmployeeAtWorkplace(c1,(*emp)->getId(),(*mngr)->getId(),(*wp)->getId());
+                    }
+                    else
+                    {
+                        this->addEmployee((*emp)->getId(),(*emp)->getFirstName(),(*emp)->getLastName(),(*emp)->getBirthYear());
+                        this->hireEmployeeAtWorkplace(c1,(*emp)->getId(),(*mngr)->getId(),(*wp)->getId());
+                    }
+                }
+            }
+
+        }
+   }
 
 //    City& City::operator=(const City& city)
 //    {
@@ -58,7 +87,7 @@ namespace mtm
     Employee* City::doesEmployeeExist(std::set<Citizen* , CompareCitizens>& citizens, int employee_id)
     {
         Employee* employee_1 = nullptr;
-        bool found_employee = false;
+       // bool found_employee = false;
         for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
         citizens.end(); ++i)
         {
@@ -72,17 +101,32 @@ namespace mtm
                return employee_1;
            }
         }
-        if(found_employee == false)
-        {
+        // if(found_employee == false)
+        // {
             throw EmployeeDoesNotExist();
-        }
+        //}
         return employee_1;
+    }
+
+    bool City::doesExist(int employee_id)
+    {
+        Employee* employee_1 = nullptr;
+        bool found_employee = false;
+        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
+        citizens.end(); ++i)
+        {
+           if((*i)->getId() == employee_id)
+           {  
+                return false;
+           }
+        }
+         return true;  
     }
 
     Manager* City::doesManagerExist(std::set<Citizen* , CompareCitizens>& citizens, int manager_id)
     {
         Manager* manager_1 = nullptr;
-        bool found_manager = false;
+        //bool found_manager = false;
         for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
         citizens.end(); ++i)
         {
@@ -96,10 +140,10 @@ namespace mtm
                return manager_1;
            }
         }
-        if(found_manager == false)
-        {
+        // if(found_manager == false)
+        // {
             throw ManagerDoesNotExist();
-        }
+        //}
         return manager_1;
     }
 

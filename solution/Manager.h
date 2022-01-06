@@ -3,6 +3,8 @@
 #include "Citizen.h"
 #include "Employee.h"
 #include <memory>
+#include <vector>
+
 #include <set>
 
 namespace mtm
@@ -13,6 +15,8 @@ namespace mtm
             int salary;
             bool hired;
             std::set<Employee*, mtm::CompareEmployee> employees; 
+
+            std::vector<std::shared_ptr<Employee>> empls;
 
         public:
             

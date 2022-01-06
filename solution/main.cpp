@@ -42,31 +42,37 @@ int main()
     e1.learnSkill(s3);
 
 
+    m1.addEmployee(&e1);
 
-    HiringCondition c;
-    WorkPlace wp1(10,"meta",100,200);
+    m2.addEmployee(&e1);
+    m2.addEmployee(&e2);
 
-    wp1.hireManager(&m1);
-    wp1.hireEmployee(c,&e1,100);
-    wp1.hireEmployee(c,&e2,100);
-    wp1.hireEmployee(c,&e3,100);
-    wp1.hireEmployee(c,&e4,100);
+    m1 = m2;
+
+    // HiringCondition c;
+    // WorkPlace wp1(10,"meta",100,200);
+
+    // wp1.hireManager(&m1);
+    // wp1.hireEmployee(c,&e1,100);
+    // wp1.hireEmployee(c,&e2,100);
+    // wp1.hireEmployee(c,&e3,100);
+    // wp1.hireEmployee(c,&e4,100);
 
     
 
+    // // Employee* eee1 = wp1.FindEmployee(1);
+
+    // WorkPlace wp2(20,"google",300,400);
+    // wp2.hireManager(&m2);
+    // wp2.hireEmployee(c,&e3,200);
+    // wp2.hireEmployee(c,&e4,200);
+
+    // wp2 = wp1;
+
+
+
+    // // wp1.fireEmployee(1,100);
     // Employee* eee1 = wp1.FindEmployee(1);
-
-    WorkPlace wp2(20,"google",300,400);
-    wp2.hireManager(&m2);
-    wp2.hireEmployee(c,&e3,200);
-    wp2.hireEmployee(c,&e4,200);
-
-    wp2 = wp1;
-
-
-
-    // wp1.fireEmployee(1,100);
-    Employee* eee1 = wp1.FindEmployee(1);
 
     // if(eee1 == nullptr)
     // {

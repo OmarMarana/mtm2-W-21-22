@@ -44,7 +44,7 @@ namespace mtm
             //destructor
             ~City();
             //copy constructor
-//            City City(const City& city);
+            City(const City& other);
             //operator=
 //            City& operator=(const City& city);
             //add an employee to the city
@@ -74,6 +74,7 @@ namespace mtm
             void printAllEmployeesWithSkill(std::ostream& stream, int skill_id);
             //static function that checks if the employee exists in the set of citizens 
             static Employee* doesEmployeeExist(std::set<Citizen* , CompareCitizens>& citizens, int employee_id);
+            bool doesExist(int employee_id);
             //static function that checks if the manager exists in the set of citizens 
             static Manager* doesManagerExist(std::set<Citizen* , CompareCitizens>& citizens, int manager_id);
     };
