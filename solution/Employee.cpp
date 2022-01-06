@@ -56,7 +56,12 @@ namespace mtm
 
     void Employee::setSalary(int delta)
     {
+
         this->salary += delta;
+        if(this->salary < 0)
+        {
+          this->salary = 0;  
+        }
     }
 
     void Employee::setScore(int delta)
@@ -78,7 +83,7 @@ namespace mtm
     {
         stream << getFirstName() << " " << getLastName() << std::endl 
         << "id - " << getId() << " birth_year - " << getBirthYear() << std::endl 
-        <<  "Salary: " << salary << " Score: " << score << " Skills: " << std::endl;
+        <<  "Salary: " << salary << " Score: " << score << " Skills:" << std::endl;
 
         for(std::set<Skill>::iterator i = skills.begin(); i != skills.end(); ++i)
         {

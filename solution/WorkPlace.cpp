@@ -15,8 +15,7 @@ namespace mtm
         for(std::set<Manager*, CompareManager>::iterator i = other.managers.begin(); i !=
         other.managers.end(); ++i)
         {
-            Manager *manager = new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
-             (*i)->getSalary(), false);
+            Manager *manager = new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear());
 
             // std::shared_ptr<Manager> manager(new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
             //  (*i)->getSalary(), false));
@@ -63,8 +62,7 @@ namespace mtm
             // Manager *manager = new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
             //  (*i)->getSalary(), false);
 
-            std::shared_ptr<Manager> manager(new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
-             (*i)->getSalary(), false));
+            std::shared_ptr<Manager> manager(new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear()));
 
 
             mngrs.push_back(manager);
@@ -192,6 +190,7 @@ namespace mtm
         
         if(work_place.managers.size() == 0)
         {
+            stream <<std::endl;
             return stream;
         }
 
@@ -200,8 +199,8 @@ namespace mtm
         for(std::set<Manager*, mtm::CompareCitizens>::iterator i = work_place.managers.begin(); i !=
         work_place.managers.end(); ++i)
         {
-            stream << "Manager";
-            (*i)->printLong(stream) << std::endl;
+            stream << "Manager ";
+            (*i)->printLong(stream) ;
         } 
   
         return stream;

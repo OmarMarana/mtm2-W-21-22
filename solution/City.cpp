@@ -6,7 +6,7 @@
 
 namespace mtm
 {
-    class FacultyCondition3: public Condition
+    class FacultyHelperCondition: public Condition
     {
         bool operator()(Employee* employee) override
         {
@@ -53,8 +53,26 @@ namespace mtm
                     }
                 }
             }
-
         }
+        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = other.citizens.begin(); i !=
+       other.citizens.end(); ++i)
+        {
+            if(this->doesExist((*i)->getId()) == false)
+            {   
+                Employee * tmp_emp1 = dynamic_cast<Employee*>(*i);
+                if(tmp_emp1 == nullptr)
+                {
+                    this->addManager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(),(*i)->getBirthYear());
+                }
+                else
+                {
+                    this->addEmployee((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(),(*i)->getBirthYear());
+                    Employee * tmp_emp2 = doesEmployeeExist(this->citizens,(*i)->getId());
+                    tmp_emp2->setScore(tmp_emp1->getScore());
+                }
+            }
+        }
+
    }
 
    City& City::operator=(const City& other)
@@ -97,6 +115,25 @@ namespace mtm
             }
 
         }
+        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = other.citizens.begin(); i !=
+       other.citizens.end(); ++i)
+        {
+            if(this->doesExist((*i)->getId()) == false)
+            {   
+                Employee * tmp_emp1 = dynamic_cast<Employee*>(*i);
+                if(tmp_emp1 == nullptr)
+                {
+                    this->addManager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(),(*i)->getBirthYear());
+                }
+                else
+                {
+                    this->addEmployee((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(),(*i)->getBirthYear());
+                    Employee * tmp_emp2 = doesEmployeeExist(this->citizens,(*i)->getId());
+                    tmp_emp2->setScore(tmp_emp1->getScore());
+                }
+            }
+        }
+
         return *this;
    }
 
@@ -234,14 +271,14 @@ namespace mtm
         
         Employee* employee = doesEmployeeExist(citizens, employee_id);
 
-        FacultyCondition3 c1 ;
+        FacultyHelperCondition c1 ;
         Faculty<Condition> faculty(faculty_id, Skill( 0, "c", 0),0, &c1 );
         if(faculties.find(faculty) == faculties.end())
         {
             throw FacultyDoesNotExist();
         }
         
-        (*(faculties.find(faculty))).teach(*employee); // mr google says that elements in set are const, so employee can't be changed here
+        (*(faculties.find(faculty))).teach(employee); // mr google says that elements in set are const, so employee can't be changed here
         
     }
     

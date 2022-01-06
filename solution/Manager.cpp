@@ -81,6 +81,7 @@ namespace mtm
         if(new_salary <= 0)
         {
             this->salary = 0;
+            return;
         }
         this->salary =new_salary;
     }

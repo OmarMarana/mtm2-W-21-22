@@ -41,7 +41,7 @@ namespace mtm
             //return the skill that the faculty teaches
             Skill getSkill();
             //teack the employee the skill
-            void teach(Employee& employee)const;
+            void teach(Employee* employee)const;
     };
     class Condition{
         public:
@@ -71,12 +71,13 @@ namespace mtm
     }
 
     template<class Condition>
-    void Faculty<Condition>::teach(Employee& employee) const
+    void Faculty<Condition>::teach(Employee* employee) const
     {
-        if((*condition)(&employee))
+        if((*condition)(employee))
         {
-            employee.learnSkill(skill);
-            employee.setScore(added_points);
+            employee->setScore(added_points); // ask what the order of these lines should be
+            employee->learnSkill(skill);
+            
         }
 
         else
