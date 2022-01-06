@@ -32,7 +32,7 @@ namespace mtm
                         manager->addEmployee(existing_employee);
                     }
                 }
-                if(already_exists = false)
+                if(already_exists == false)
                 {
                     Employee * employee = new Employee(*(*j));
                     manager->addEmployee(employee);
@@ -42,6 +42,49 @@ namespace mtm
             hireManager(manager);
         }
     }
+
+    WorkPlace& WorkPlace::operator=(const WorkPlace& other)
+    {
+        id = other.id;
+        name = other.name;
+        salary_of_managers = other.salary_of_managers;
+        salary_of_employees = other.salary_of_employees;
+        managers.clear();
+        std::vector<int> existing_employees; 
+        for(std::set<Manager*, CompareManager>::iterator i = other.managers.begin(); i !=
+        other.managers.end(); ++i)
+        {
+            Manager *manager = new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
+             (*i)->getSalary(), false);
+
+             for(std::set<Employee*, mtm::CompareEmployee>::iterator j = (*i)->getEmployees().begin(); j !=
+                (*i)->getEmployees().end(); ++j)
+            {
+                bool already_exists = false;
+                Employee* existing_employee = nullptr;
+                for(int id : existing_employees) 
+                {
+                	if(id == (*j)->getId())
+                    {
+                        already_exists = true;
+                        existing_employee = this->FindEmployee((*j)->getId());
+                        manager->addEmployee(existing_employee);
+                    }
+                }
+                if(already_exists == false)
+                {
+                    Employee * employee = new Employee(*(*j));
+                    manager->addEmployee(employee);
+                    existing_employees.push_back((*j)->getId());
+                }
+            }
+            hireManager(manager);
+        }
+
+        return *this;
+    }
+
+
 
     Employee* WorkPlace::FindEmployee(int employee_id)
     {

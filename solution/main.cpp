@@ -22,52 +22,25 @@ public:
 int main()
 {
     
-    
-
-
-    Employee e1(1,"name","1", 2001);
-    Employee e2(2,"name","2", 2002);
-    Employee e3(3,"name","3", 2003);
-    Employee e4(4,"name","4", 2004);
+    Employee e1(10,"name","1", 2001);
+    Employee e2(7,"name","2", 2002);
+    Employee e3(11,"name","3", 2003);
+    Employee e4(1,"name","4", 2004);
 
 
     Manager m1(100,"o","m", 2001);
+    Manager m2(200,"w","e", 2001);
 
-    // m1.addEmployee(&e1);
-    // m1.addEmployee(&e2);
-    // m1.addEmployee(&e3);
-    // m1.addEmployee(&e4);
-
-    Skill s1(1,"s1",0);
-    Skill s2(2,"s2",0);
-    Skill s3(3,"s3",0);
+    
+    Skill s1(4,"s1",0);
+    Skill s2(3,"s2",0);
+    Skill s3(2,"s3",0);
 
 
     e1.learnSkill(s1);
     e1.learnSkill(s2);
     e1.learnSkill(s3);
 
-
-    // e1.printLong(std::cout);
-
-
-    // e4 = e1;
-
-    // e4.forgetSkill(1);
-
-    // e4.printLong(std::cout);
-
-
-
-    // m1.printLong(std::cout);
-
-    // Manager m2 = m1;
-
-    // m1.removeEmployee(1);
-
-    // m2.printLong(std::cout);
-
-    // m1.printLong(std::cout);
 
 
     HiringCondition c;
@@ -76,23 +49,54 @@ int main()
     wp1.hireManager(&m1);
     wp1.hireEmployee(c,&e1,100);
     wp1.hireEmployee(c,&e2,100);
+    wp1.hireEmployee(c,&e3,100);
+    wp1.hireEmployee(c,&e4,100);
+
+    
+
+    // Employee* eee1 = wp1.FindEmployee(1);
+
+    WorkPlace wp2(20,"google",300,400);
+    wp2.hireManager(&m2);
+    wp2.hireEmployee(c,&e3,200);
+    wp2.hireEmployee(c,&e4,200);
+
+    wp2 = wp1;
 
 
-    WorkPlace wp2 = wp1;
 
-    wp1.fireEmployee(1,100);
+    // wp1.fireEmployee(1,100);
     Employee* eee1 = wp1.FindEmployee(1);
 
-    if(eee1 == nullptr)
-    {
-        std::cout << "null in wp1" << std::endl;
-    }
+    // if(eee1 == nullptr)
+    // {
+    //     std::cout << "null in wp1" << std::endl;
+    // }
 
-    Employee* eee2  = wp2.FindEmployee(1);
-    if(eee2 != nullptr)
-    {
-        std::cout << "exists in wp2" << std::endl;
-    }
+    // Employee* eee2  = wp2.FindEmployee(1);
+    // if(eee2 != nullptr)
+    // {
+    //     std::cout << "exists in wp2" << std::endl;
+    // }
+
+
+    // wp1.hireEmployee(c,&e3,100);
+
+    // Employee* eee1 = wp1.FindEmployee(3);
+
+    // if(eee1 != nullptr)
+    // {
+    //     std::cout << "e3 found in wp1" << std::endl;
+    // }
+
+
+    // Employee* eee2 = wp2.FindEmployee(3);
+
+    // if(eee2 != nullptr)
+    // {
+    //     std::cout << "e3 found in wp2" << std::endl;
+    // }
+
 
 
 
@@ -152,6 +156,6 @@ int main()
     // m1.printLong(cout);
 
 
-
+    std::cout << "hello1" << std::endl;
     return 0;
 }
