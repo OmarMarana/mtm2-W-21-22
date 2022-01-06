@@ -46,7 +46,7 @@ namespace mtm
             //copy constructor
             City(const City& other);
             //operator=
-//            City& operator=(const City& city);
+            City& operator=(const City& other);
             //add an employee to the city
             void addEmployee(int id,std::string first_name,std::string last_name,int year_of_birth);
             //add a manager to the city

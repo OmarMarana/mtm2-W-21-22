@@ -63,6 +63,13 @@ int main() {
     city.printAllEmployeesWithSkill(cout, 1);
 
     City city2 = city;
+
+
+    City city3 ("salam 3lekom");
+
+    city3 = city2;
+
+
     
     return 0;
 }

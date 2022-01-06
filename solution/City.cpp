@@ -57,23 +57,48 @@ namespace mtm
         }
    }
 
-//    City& City::operator=(const City& city)
-//    {
-//        this->name = city.name;
-//        this->faculties = city.faculties;
-//        this->workplaces = city.workplaces;
-//        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
-//        citizens.end(); ++i)
-//        {
-//            delete (*i);
-//        }
-//        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = city.citizens.begin(); i !=
-//        city.citizens.end(); ++i)
-//        {
-//            Citizen* citizen = (*i)->clone();
-//            this->citizens.insert(citizen);
-//        }
-//    }
+   City& City::operator=(const City& other)
+   {
+       this->name = other.name;
+       this->faculties = other.faculties;
+       for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
+       citizens.end(); ++i)
+       {
+           delete (*i);
+       }
+       workplaces.clear();
+
+       for(std::set<std::shared_ptr<WorkPlace>, CompareWorkplaces>::iterator wp = other.workplaces.begin(); wp !=
+        other.workplaces.end(); ++wp)
+        {
+            this->createWorkplace((*wp)->getId(),(*wp)->getName(),(*wp)->getWorkersSalary(),(*wp)->getManagersSalary());
+            
+            for(std::set<Manager*, CompareManager>::iterator mngr = (*wp)->getManagers().begin(); mngr !=
+            (*wp)->getManagers().end(); ++mngr)
+            {
+                this->addManager((*mngr)->getId(),(*mngr)->getFirstName(),(*mngr)->getLastName(),(*mngr)->getBirthYear());
+                this->hireManagerAtWorkplace((*mngr)->getId(),(*wp)->getId());
+
+                for(std::set<Employee*, mtm::CompareEmployee>::iterator emp = (*mngr)->getEmployees().begin(); emp !=
+                (*mngr)->getEmployees().end(); ++emp)
+                {
+                    HiringConditionO c1;
+                    if(this->doesExist((*emp)->getId()))
+                    {   
+                        
+                        this->hireEmployeeAtWorkplace(c1,(*emp)->getId(),(*mngr)->getId(),(*wp)->getId());
+                    }
+                    else
+                    {
+                        this->addEmployee((*emp)->getId(),(*emp)->getFirstName(),(*emp)->getLastName(),(*emp)->getBirthYear());
+                        this->hireEmployeeAtWorkplace(c1,(*emp)->getId(),(*mngr)->getId(),(*wp)->getId());
+                    }
+                }
+            }
+
+        }
+        return *this;
+   }
 
     City::~City()
     {
@@ -110,17 +135,16 @@ namespace mtm
 
     bool City::doesExist(int employee_id)
     {
-        Employee* employee_1 = nullptr;
-        bool found_employee = false;
+        // Employee* employee_1 = nullptr;
         for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
         citizens.end(); ++i)
         {
            if((*i)->getId() == employee_id)
            {  
-                return false;
+                return true;
            }
         }
-         return true;  
+        return false;  
     }
 
     Manager* City::doesManagerExist(std::set<Citizen* , CompareCitizens>& citizens, int manager_id)
