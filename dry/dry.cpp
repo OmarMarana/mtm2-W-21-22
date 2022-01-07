@@ -22,9 +22,14 @@ std::vector<T> slice(std::vector<T> vec, int start, int step, int stop)
     if(step <= 0)
     {
         throw BadInput();
+    }
+    std::vector<T> new_vec;
+    if(start >=stop)
+    {
+        return new_vec;
     }    
 
-    std::vector<T> new_vec;
+    
     for(int i = start ; i < stop ; i += step)
     {
         new_vec.push_back(vec[i]);
