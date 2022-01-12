@@ -149,6 +149,7 @@ namespace mtm
         managers.insert(manager);
         manager->setHired(true);
         manager->setSalary(this->salary_of_managers);
+        manager->updateEmployeesSalaryAfterFire(salary_of_employees);
     }
 
     void Workplace::fireEmployee(int employee_id, int manager_id)

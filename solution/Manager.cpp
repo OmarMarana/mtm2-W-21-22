@@ -10,44 +10,44 @@ namespace mtm
         return employees;
     }
 
-    Manager::Manager(const Manager& other) : Citizen(other.getId(), other.getFirstName(), other.getLastName(), other.getBirthYear())
-    {
-        salary = other.salary;
-        hired = other.hired;
-        for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
-        other.employees.end(); ++i)
-        {   
-            // Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
-            std::shared_ptr<Employee> employee(new Employee(*(*i)));
-            empls.push_back(employee);
-            employees.insert(employee.get());
-        }
-    }
+    // Manager::Manager(const Manager& other) : Citizen(other.getId(), other.getFirstName(), other.getLastName(), other.getBirthYear())
+    // {
+    //     salary = other.salary;
+    //     hired = other.hired;
+    //     for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
+    //     other.employees.end(); ++i)
+    //     {   
+    //         // Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
+    //         std::shared_ptr<Employee> employee(new Employee(*(*i)));
+    //         empls.push_back(employee);
+    //         employees.insert(employee.get());
+    //     }
+    // }
 
-    Manager& Manager::operator=(const Manager& other)
-    {
-        hired = other.hired;
-        salary = other.salary;
-        // for(std::set<Employee*, mtm::CompareEmployee>::iterator i = employees.begin(); i !=
-        // employees.end(); ++i)
-        // {   
-        //     delete (*i);
-        // }
+    // Manager& Manager::operator=(const Manager& other)
+    // {
+    //     hired = other.hired;
+    //     salary = other.salary;
+    //     // for(std::set<Employee*, mtm::CompareEmployee>::iterator i = employees.begin(); i !=
+    //     // employees.end(); ++i)
+    //     // {   
+    //     //     delete (*i);
+    //     // }
 
-        employees.clear();
-        empls.clear();
+    //     employees.clear();
+    //     empls.clear();
 
-        for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
-        other.employees.end(); ++i)
-        {   
-            // Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
-            std::shared_ptr<Employee> employee(new Employee(*(*i)));
-            empls.push_back(employee);
-            employees.insert(employee.get());
-        }
+    //     for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
+    //     other.employees.end(); ++i)
+    //     {   
+    //         // Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
+    //         std::shared_ptr<Employee> employee(new Employee(*(*i)));
+    //         empls.push_back(employee);
+    //         employees.insert(employee.get());
+    //     }
         
-        return *this;
-    }
+    //     return *this;
+    // }
 
     int Manager::getSalary()const
     {
