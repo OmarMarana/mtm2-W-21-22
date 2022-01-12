@@ -75,9 +75,8 @@ namespace mtm
     {
         if((*condition)(employee))
         {
-            employee->setScore(added_points); // ask what the order of these lines should be
             employee->learnSkill(skill);
-            
+            employee->setScore(added_points); // ask what the order of these lines should be
         }
 
         else

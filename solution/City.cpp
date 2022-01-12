@@ -357,7 +357,7 @@ namespace mtm
         // wp.fireManager(manager_id);
         manager->setSalary(-((*(workplaces.find(work_place)))->getManagersSalary()));
         // manager_1->updateEmployeesSalaryAfterFire(-(wp.getWorkersSalary()));/////
-
+        manager->getEmployees().clear();
         // workplaces.erase((*(workplaces.find(work_place))));
         // workplaces.insert(wp);    
     }
