@@ -93,9 +93,18 @@ namespace mtm
     }
     std::ostream& Manager::printLong(std::ostream& stream) const 
     {
-        stream << getFirstName() << " " << getLastName() << std::endl <<
-        "id - " << getId() << " birth_year - " << getBirthYear() << std::endl <<
-        "Salary: " << salary <<  std::endl << "Employees:"<<std::endl;       // check if there should be a space after Employees:
+        if(employees.size() != 0)
+        {
+            stream << getFirstName() << " " << getLastName() << std::endl <<
+            "id - " << getId() << " birth_year - " << getBirthYear() << std::endl <<
+            "Salary: " << salary <<  std::endl << "Employees: "<<std::endl;       // check if there should be a space after Employees:
+        }
+        else
+        {
+            stream << getFirstName() << " " << getLastName() << std::endl <<
+            "id - " << getId() << " birth_year - " << getBirthYear() << std::endl <<
+            "Salary: " << salary <<std::endl;       // check if there should be a space after Employees:
+        }
         
         for(std::set<Employee*, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
         {

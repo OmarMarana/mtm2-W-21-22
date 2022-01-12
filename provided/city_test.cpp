@@ -1,10 +1,10 @@
 #include <iostream>
-#include "../solution/Employee.h"
-#include "../solution/Manager.h"
-#include "../solution/Workplace.h"
-#include "../solution/City.h"
-#include <assert.h>
-#include "../solution/exceptions.h"
+#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/Employee.h"
+#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/Manager.h"
+#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/Faculty.h"
+#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/Workplace.h"
+#include "/home/omarmarana/matam/Winter-21_22/mtm2-W-21-22/solution/City.h"
+
 using namespace mtm;
 using std::cout;
 using std::endl;
@@ -61,15 +61,5 @@ int main() {
     city.getAllAboveSalary(cout,1000);
     cout << endl << "printAllEmployeesWithSkill output" << endl;
     city.printAllEmployeesWithSkill(cout, 1);
-
-    City city2 = city;
-
-
-    City city3 ("salam 3lekom");
-
-    city3 = city2;
-
-
-    
     return 0;
 }
