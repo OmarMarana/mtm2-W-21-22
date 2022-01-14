@@ -48,9 +48,6 @@ namespace mtm
             virtual bool operator()(Employee* employee) = 0;
     };
 
-    // template<class Condition>
-    
-
 
     template<class Condition>
     int Faculty<Condition>::getAddedPoints()
@@ -76,7 +73,7 @@ namespace mtm
         if((*condition)(employee))
         {
             employee->learnSkill(skill);
-            employee->setScore(added_points); // ask what the order of these lines should be
+            employee->setScore(added_points); 
         }
 
         else

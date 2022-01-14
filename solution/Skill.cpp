@@ -18,17 +18,11 @@ namespace mtm
 
     Skill Skill::operator++(int) 
     {
-        /*
-        Iterator result = *this;
-        ++*this;
-        return result;
-        */
+        
         Skill result = *this;
         this->required_points++;
         return result;
 
-        // this->required_points++;
-        // return *this;
     }
 
     Skill& Skill::operator+=(int delta)

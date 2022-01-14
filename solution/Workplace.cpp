@@ -17,10 +17,6 @@ namespace mtm
         {
             Manager *manager = new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear());
 
-            // std::shared_ptr<Manager> manager(new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
-            //  (*i)->getSalary(), false));
-
-
              for(std::set<Employee*, mtm::CompareEmployee>::iterator j = (*i)->getEmployees().begin(); j !=
                 (*i)->getEmployees().end(); ++j)
             {
@@ -59,9 +55,7 @@ namespace mtm
         for(std::set<Manager*, CompareManager>::iterator i = other.managers.begin(); i !=
         other.managers.end(); ++i)
         {
-            // Manager *manager = new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear(),
-            //  (*i)->getSalary(), false);
-
+           
             std::shared_ptr<Manager> manager(new Manager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(), (*i)->getBirthYear()));
 
 
@@ -82,7 +76,6 @@ namespace mtm
                 }
                 if(already_exists == false)
                 {
-                    // Employee * employee = new Employee(*(*j));
                     std::shared_ptr<Employee> employee(new Employee(*(*j)));
                     empls.push_back(employee);
                     manager.get()->addEmployee(employee.get());

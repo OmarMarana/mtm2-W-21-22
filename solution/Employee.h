@@ -11,7 +11,7 @@ namespace mtm
         private:
             int salary;
             int score;
-            std::set<Skill> skills; // may have to define a cmpFunc like citizenCmp
+            std::set<Skill> skills; 
 
         public:
             Employee(int id,std::string first_name,std::string last_name,int year_of_birth, int salary = 0,int score = 0):

@@ -9,7 +9,6 @@
 namespace mtm 
 
 {
-    // class HiringCondition;
 
     template<class Condition>
     class CompareFaculties
@@ -20,22 +19,14 @@ namespace mtm
                 return faculty1.getId() < faculty2.getId(); 
             }
         };
-    // class Condition
-    // {
-    //     public:
-    //         bool operator()(Employee* employee)
-    //         {
-    //             return true;
-    //         }
-    // };
-    // template<class Condition>
+    
     class City
     {
         private:
             std::string name;
             std::set<Citizen* , CompareCitizens> citizens;
             
-            std::set<Faculty<Condition>, CompareFaculties<Condition>> faculties; // maybe change set to vector here
+            std::set<Faculty<Condition>, CompareFaculties<Condition>> faculties; 
             std::set<std::shared_ptr<Workplace>, CompareWorkplaces> workplaces;
         
         public:
@@ -43,10 +34,7 @@ namespace mtm
             City(std::string name) : name(name) {}
             //destructor
             ~City();
-            //copy constructor
-            City(const City& other);
-            //operator=
-            City& operator=(const City& other);
+            
             //add an employee to the city
             void addEmployee(int id,std::string first_name,std::string last_name,int year_of_birth);
             //add a manager to the city
@@ -86,9 +74,7 @@ namespace mtm
         Employee * employee = doesEmployeeExist(this->citizens, employee_id);
 
         doesManagerExist(this->citizens, manager_id);
-
         
-        // Workplace work_place(workplace_id,"F",0,0);
         std::shared_ptr<Workplace> work_place(new Workplace(workplace_id,"F",0,0));
         if(workplaces.find(work_place) == workplaces.end())
         {
@@ -96,10 +82,7 @@ namespace mtm
         }
         
         (*(workplaces.find(work_place)))->hireEmployee(Condition ,employee ,manager_id);
-        // Workplace wp = (*(workplaces.find(work_place)));
-        // wp.hireEmployee(Condition ,employee ,manager_id);
-        // workplaces.erase((*(workplaces.find(work_place))));
-        // workplaces.insert(wp);
+        
     }
     
 }

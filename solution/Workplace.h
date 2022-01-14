@@ -9,7 +9,6 @@
 namespace mtm
 {
                        
-    ////typedef void*(*ConditionToCheck)(Condition*);
     class Workplace
     {
         private:

@@ -21,121 +21,6 @@ namespace mtm
             }
     };
 
-   City::City(const City& other)
-   {
-       this->name = other.name;
-       this->faculties = other.faculties;
-        
-        for(std::set<std::shared_ptr<Workplace>, CompareWorkplaces>::iterator wp = other.workplaces.begin(); wp !=
-        other.workplaces.end(); ++wp)
-        {
-            this->createWorkplace((*wp)->getId(),(*wp)->getName(),(*wp)->getWorkersSalary(),(*wp)->getManagersSalary());
-            
-            for(std::set<Manager*, CompareManager>::iterator mngr = (*wp)->getManagers().begin(); mngr !=
-            (*wp)->getManagers().end(); ++mngr)
-            {
-                this->addManager((*mngr)->getId(),(*mngr)->getFirstName(),(*mngr)->getLastName(),(*mngr)->getBirthYear());
-                this->hireManagerAtWorkplace((*mngr)->getId(),(*wp)->getId());
-
-                for(std::set<Employee*, mtm::CompareEmployee>::iterator emp = (*mngr)->getEmployees().begin(); emp !=
-                (*mngr)->getEmployees().end(); ++emp)
-                {
-                    HiringConditionO c1;
-                    if(this->doesExist((*emp)->getId()))
-                    {   
-                        
-                        this->hireEmployeeAtWorkplace(c1,(*emp)->getId(),(*mngr)->getId(),(*wp)->getId());
-                    }
-                    else
-                    {
-                        this->addEmployee((*emp)->getId(),(*emp)->getFirstName(),(*emp)->getLastName(),(*emp)->getBirthYear());
-                        this->hireEmployeeAtWorkplace(c1,(*emp)->getId(),(*mngr)->getId(),(*wp)->getId());
-                    }
-                }
-            }
-        }
-        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = other.citizens.begin(); i !=
-       other.citizens.end(); ++i)
-        {
-            if(this->doesExist((*i)->getId()) == false)
-            {   
-                Employee * tmp_emp1 = dynamic_cast<Employee*>(*i);
-                if(tmp_emp1 == nullptr)
-                {
-                    this->addManager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(),(*i)->getBirthYear());
-                }
-                else
-                {
-                    this->addEmployee((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(),(*i)->getBirthYear());
-                    Employee * tmp_emp2 = doesEmployeeExist(this->citizens,(*i)->getId());
-                    tmp_emp2->setScore(tmp_emp1->getScore());
-                }
-            }
-        }
-
-   }
-
-   City& City::operator=(const City& other)
-   {
-       this->name = other.name;
-       this->faculties = other.faculties;
-       for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
-       citizens.end(); ++i)
-       {
-           delete (*i);
-       }
-       workplaces.clear();
-
-       for(std::set<std::shared_ptr<Workplace>, CompareWorkplaces>::iterator wp = other.workplaces.begin(); wp !=
-        other.workplaces.end(); ++wp)
-        {
-            this->createWorkplace((*wp)->getId(),(*wp)->getName(),(*wp)->getWorkersSalary(),(*wp)->getManagersSalary());
-            
-            for(std::set<Manager*, CompareManager>::iterator mngr = (*wp)->getManagers().begin(); mngr !=
-            (*wp)->getManagers().end(); ++mngr)
-            {
-                this->addManager((*mngr)->getId(),(*mngr)->getFirstName(),(*mngr)->getLastName(),(*mngr)->getBirthYear());
-                this->hireManagerAtWorkplace((*mngr)->getId(),(*wp)->getId());
-
-                for(std::set<Employee*, mtm::CompareEmployee>::iterator emp = (*mngr)->getEmployees().begin(); emp !=
-                (*mngr)->getEmployees().end(); ++emp)
-                {
-                    HiringConditionO c1;
-                    if(this->doesExist((*emp)->getId()))
-                    {   
-                        
-                        this->hireEmployeeAtWorkplace(c1,(*emp)->getId(),(*mngr)->getId(),(*wp)->getId());
-                    }
-                    else
-                    {
-                        this->addEmployee((*emp)->getId(),(*emp)->getFirstName(),(*emp)->getLastName(),(*emp)->getBirthYear());
-                        this->hireEmployeeAtWorkplace(c1,(*emp)->getId(),(*mngr)->getId(),(*wp)->getId());
-                    }
-                }
-            }
-
-        }
-        for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = other.citizens.begin(); i !=
-       other.citizens.end(); ++i)
-        {
-            if(this->doesExist((*i)->getId()) == false)
-            {   
-                Employee * tmp_emp1 = dynamic_cast<Employee*>(*i);
-                if(tmp_emp1 == nullptr)
-                {
-                    this->addManager((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(),(*i)->getBirthYear());
-                }
-                else
-                {
-                    this->addEmployee((*i)->getId(),(*i)->getFirstName(),(*i)->getLastName(),(*i)->getBirthYear());
-                    Employee * tmp_emp2 = doesEmployeeExist(this->citizens,(*i)->getId());
-                    tmp_emp2->setScore(tmp_emp1->getScore());
-                }
-            }
-        }
-
-        return *this;
-   }
 
     City::~City()
     {
@@ -149,7 +34,6 @@ namespace mtm
     Employee* City::doesEmployeeExist(std::set<Citizen* , CompareCitizens>& citizens, int employee_id)
     {
         Employee* employee_1 = nullptr;
-       // bool found_employee = false;
         for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
         citizens.end(); ++i)
         {
@@ -163,16 +47,12 @@ namespace mtm
                return employee_1;
            }
         }
-        // if(found_employee == false)
-        // {
-            throw EmployeeDoesNotExist();
-        //}
+        throw EmployeeDoesNotExist();
         return employee_1;
     }
 
     bool City::doesExist(int employee_id)
     {
-        // Employee* employee_1 = nullptr;
         for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
         citizens.end(); ++i)
         {
@@ -187,7 +67,6 @@ namespace mtm
     Manager* City::doesManagerExist(std::set<Citizen* , CompareCitizens>& citizens, int manager_id)
     {
         Manager* manager_1 = nullptr;
-        //bool found_manager = false;
         for(std::set<Citizen*, mtm::CompareCitizens>::iterator i = citizens.begin(); i !=
         citizens.end(); ++i)
         {
@@ -201,10 +80,7 @@ namespace mtm
                return manager_1;
            }
         }
-        // if(found_manager == false)
-        // {
-            throw ManagerDoesNotExist();
-        //}
+        throw ManagerDoesNotExist();
         return manager_1;
     }
 
@@ -254,9 +130,7 @@ namespace mtm
 
     void City::createWorkplace(int id,std::string name,int salary_of_employees,int salary_of_managers)
     {
-        // Workplace new_workplace(id,name,salary_of_employees,salary_of_managers);
         std::shared_ptr<Workplace> new_workplace(new Workplace(id,name,salary_of_employees,salary_of_managers));
-        // std::shared_ptr<Employee> new_employee(new Employee(id,first_name,last_name ,year_of_birth));
         if(workplaces.find(new_workplace) != workplaces.end() )
         {
             throw WorkplaceAlreadyExists();
@@ -278,17 +152,15 @@ namespace mtm
             throw FacultyDoesNotExist();
         }
         
-        (*(faculties.find(faculty))).teach(employee); // mr google says that elements in set are const, so employee can't be changed here
+        (*(faculties.find(faculty))).teach(employee);
         
     }
     
-    // static void  
 
     void City::hireManagerAtWorkplace(int manager_id, int workplace_id)
     {
         Manager* manager = doesManagerExist(citizens, manager_id);
        
-        //Workplace work_place(workplace_id,"F",0,0);
         std::shared_ptr<Workplace> work_place(new Workplace(workplace_id,"F",0,0));
         if(workplaces.find(work_place) == workplaces.end())
         {
@@ -297,22 +169,7 @@ namespace mtm
 
 
         (*(workplaces.find(work_place)))->hireManager(manager);
-    //   Workplace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
-    //   wp.hireManager(manager);
-
-    //   workplaces.erase((*(workplaces.find(work_place))));
-    //   workplaces.insert(wp);
-      /*
-      possible solutions:
-      1.change set to vector and every time we used set.find we should use foreach.vecor
-      and find the desired element. Additionally, in each ordered set we should use the algorithim vector.sort
-      E.g at "https://en.cppreference.com/w/cpp/algorithm/sort".
-
-      2.Each time we need to change an element in the set we should make a copy of the element and make the changes on the
-      copy and insert it after removing the unupdated element  
       
-      
-      */
     }
 
     void City::fireEmployeeAtWorkplace(int employee_id, int manager_id, int workplace_id)
@@ -320,7 +177,6 @@ namespace mtm
         doesEmployeeExist(citizens, employee_id);
         doesManagerExist(citizens, manager_id);
 
-        // Workplace work_place(workplace_id,"F",0,0);
         std::shared_ptr<Workplace> work_place(new Workplace(workplace_id,"F",0,0));
         if(workplaces.find(work_place) == workplaces.end())
         {
@@ -329,37 +185,22 @@ namespace mtm
 
         (*(workplaces.find(work_place)))->fireEmployee(employee_id, manager_id);
 
-        // Workplace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
-        // wp.fireEmployee(employee_id, manager_id);
-        // // employee_1->setSalary(-(wp.getWorkersSalary()));
-
-
-        // workplaces.erase((*(workplaces.find(work_place))));
-        // workplaces.insert(wp);
-
-        
     }
     
     void City::fireManagerAtWorkplace(int manager_id, int workplace_id)
     {        
         Manager* manager = doesManagerExist(citizens, manager_id);
 
-        // Workplace work_place(workplace_id,"F",0,0);
         std::shared_ptr<Workplace> work_place(new Workplace(workplace_id,"F",0,0));
         if(workplaces.find(work_place) == workplaces.end())
         {
             throw WorkplaceDoesNotExist();
         }
 
-
         (*(workplaces.find(work_place)))->fireManager(manager_id);
-        // Workplace wp = (*(workplaces.find(work_place)));  //make sure that the managers set contains pointers to the same manager instances
-        // wp.fireManager(manager_id);
+        
         manager->setSalary(-((*(workplaces.find(work_place)))->getManagersSalary()));
-        // manager_1->updateEmployeesSalaryAfterFire(-(wp.getWorkersSalary()));/////
         manager->getEmployees().clear();
-        // workplaces.erase((*(workplaces.find(work_place))));
-        // workplaces.insert(wp);    
     }
 
     int  City::getAllAboveSalary(std::ostream& stream, int salary)
@@ -401,7 +242,6 @@ namespace mtm
         for(std::set<std::shared_ptr<Workplace>, CompareWorkplaces>::iterator i = workplaces.begin(); i !=
         workplaces.end(); ++i)
         {
-            // Workplace wp = (*i);
             if((*i)->isWorkingHere(employee_id1))
             {
                 working_at_the_same_place = (*i)->isWorkingHere(employee_id2);
@@ -430,7 +270,6 @@ namespace mtm
                 }
            }
        }
-    //    stream << std::endl;
 
     }        
 }

@@ -10,7 +10,7 @@ namespace mtm
         private:
             int id;
             std::string first_name;
-            std::string last_name; //return first_name;
+            std::string last_name; 
             int year_of_birth;
         
         public:

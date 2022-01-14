@@ -10,44 +10,7 @@ namespace mtm
         return employees;
     }
 
-    // Manager::Manager(const Manager& other) : Citizen(other.getId(), other.getFirstName(), other.getLastName(), other.getBirthYear())
-    // {
-    //     salary = other.salary;
-    //     hired = other.hired;
-    //     for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
-    //     other.employees.end(); ++i)
-    //     {   
-    //         // Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
-    //         std::shared_ptr<Employee> employee(new Employee(*(*i)));
-    //         empls.push_back(employee);
-    //         employees.insert(employee.get());
-    //     }
-    // }
-
-    // Manager& Manager::operator=(const Manager& other)
-    // {
-    //     hired = other.hired;
-    //     salary = other.salary;
-    //     // for(std::set<Employee*, mtm::CompareEmployee>::iterator i = employees.begin(); i !=
-    //     // employees.end(); ++i)
-    //     // {   
-    //     //     delete (*i);
-    //     // }
-
-    //     employees.clear();
-    //     empls.clear();
-
-    //     for(std::set<Employee*, mtm::CompareEmployee>::iterator i = other.employees.begin(); i !=
-    //     other.employees.end(); ++i)
-    //     {   
-    //         // Employee* employee = dynamic_cast<Employee*>((*i)->clone()); 
-    //         std::shared_ptr<Employee> employee(new Employee(*(*i)));
-    //         empls.push_back(employee);
-    //         employees.insert(employee.get());
-    //     }
-        
-    //     return *this;
-    // }
+    
 
     int Manager::getSalary()const
     {
@@ -97,20 +60,19 @@ namespace mtm
         {
             stream << getFirstName() << " " << getLastName() << std::endl <<
             "id - " << getId() << " birth_year - " << getBirthYear() << std::endl <<
-            "Salary: " << salary <<  std::endl << "Employees: "<<std::endl;       // check if there should be a space after Employees:
+            "Salary: " << salary <<  std::endl << "Employees: "<<std::endl;       
         }
         else
         {
             stream << getFirstName() << " " << getLastName() << std::endl <<
             "id - " << getId() << " birth_year - " << getBirthYear() << std::endl <<
-            "Salary: " << salary <<std::endl;       // check if there should be a space after Employees:
+            "Salary: " << salary <<std::endl;       
         }
         
         for(std::set<Employee*, mtm::CompareCitizens>::iterator i = employees.begin(); i != employees.end(); ++i)
         {
             (*i)->printShort(stream) ;
         } 
-        // stream << std::endl;
         return stream;
     }
     

@@ -18,11 +18,11 @@ namespace mtm
 
     void Employee::learnSkill(Skill skill)
     {
-        if( skills.find(skill) != skills.end()) // check if find works as expected
+        if( skills.find(skill) != skills.end())
         {
             throw SkillAlreadyLearned();
         }
-        if(this->score < skill.getRequiredPoints()) /// < or <=
+        if(this->score < skill.getRequiredPoints()) 
         {
             throw CanNotLearnSkill();
         }
@@ -106,14 +106,6 @@ namespace mtm
         return stream;
     }
 
-    //1
-    // Employee* Employee::clone() const 
-    // {
-    //     Employee* ptr(new Employee(*this));
-    //     return ptr;
-    // }
-
-    //2
     Citizen* Employee::clone() const 
     {
         Citizen* ptr(new Employee(*this));

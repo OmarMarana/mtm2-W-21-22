@@ -22,10 +22,6 @@ namespace mtm
             
             Manager(int id,std::string first_name,std::string last_name,int year_of_birth,
             int salary = 0, bool hired = false):Citizen(id, first_name, last_name,year_of_birth), salary(salary), hired(hired) {}
-            //check if chould define defaluts
-            //
-            // Manager(const Manager& other);
-            // Manager& operator=(const Manager& other);
             //returns the salary of the manager
             int getSalary()const;
             //add employee to the set employees of the manager
@@ -48,7 +44,6 @@ namespace mtm
             ~Manager() override = default;
             //checks if the employee is working for the manager 
             bool isEmployeeIn(int employee_id);
-            // void updateEmployeeSalaryAfterFire(int employee_id, int salary_to_deduce);
             //update employees salary After fire
             void updateEmployeesSalaryAfterFire(int delta);
             //deduce the salary of the employee after firing him
