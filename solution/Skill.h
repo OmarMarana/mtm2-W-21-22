@@ -21,7 +21,7 @@ namespace mtm
         //return the required points to learn the skill
         int getRequiredPoints() const;
         //Increment the skill required_points by 1
-        Skill& operator++(int); 
+        Skill operator++(int); 
         //Increment the skill required_points by delta
         Skill& operator+=(int delta);
         //opertaor plus to the left side

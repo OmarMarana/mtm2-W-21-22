@@ -16,10 +16,19 @@ namespace mtm
         return required_points;
     }
 
-    Skill& Skill::operator++(int) 
+    Skill Skill::operator++(int) 
     {
+        /*
+        Iterator result = *this;
+        ++*this;
+        return result;
+        */
+        Skill result = *this;
         this->required_points++;
-        return *this;
+        return result;
+
+        // this->required_points++;
+        // return *this;
     }
 
     Skill& Skill::operator+=(int delta)

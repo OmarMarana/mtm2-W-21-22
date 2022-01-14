@@ -106,10 +106,17 @@ namespace mtm
         return stream;
     }
 
+    //1
+    // Employee* Employee::clone() const 
+    // {
+    //     Employee* ptr(new Employee(*this));
+    //     return ptr;
+    // }
+
+    //2
     Citizen* Employee::clone() const 
     {
         Citizen* ptr(new Employee(*this));
         return ptr;
     }
-
 }

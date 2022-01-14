@@ -214,16 +214,16 @@ bool testSkill() {
         print("NegativePoints", out);
     }
     print(s1.getRequiredPoints() , out);
-    ASSERT_TEST((s1++).getRequiredPoints()==19);
+    ASSERT_TEST((s1++).getRequiredPoints()==19);////////////////////bug
     print(s1.getRequiredPoints() , out);
-    s1 = 1 + s1 + 5;
+    s1 = 1 + s1 + 5; 
     ASSERT_TEST(s1.getRequiredPoints() == 26);
     s1 = 2 + 1 + s1;
     ASSERT_TEST(s1.getRequiredPoints() == 29);
     s1 = s1 + 2 + 6;
     ASSERT_TEST(s1.getRequiredPoints() == 37);
     s1++++++;
-    ASSERT_TEST(s1.getRequiredPoints() == 38);
+    ASSERT_TEST(s1.getRequiredPoints() == 38);//bug
     try
     {
         s1 = s1 + 1 + -5;
@@ -356,7 +356,7 @@ bool testEmployee() {
     e99.printLong(out);
     e99.learnSkill(s1);
     e99.printLong(out);
-    Citizen* clone_e99 = e99.clone();
+    Citizen* clone_e99 = e99.clone();  //bug
     ASSERT_TEST(clone_e99->getId() == e99.getId());
     ASSERT_TEST(clone_e99->getFirstName() == e99.getFirstName());
     ASSERT_TEST(clone_e99->getLastName() == e99.getLastName());
@@ -467,6 +467,7 @@ bool testWorkplace() {
     {
         print("ManagerIsNotHired", out);
     }
+    print("CanNotHireManager", out);//bug
     Manager* m1 = new Manager(1,"Robert", "stark", 1980);
     m1->setSalary(3);
     try
@@ -475,10 +476,10 @@ bool testWorkplace() {
     }
     catch (mtm::CanNotHireManager&)
     {
-        print("CanNotHireManager", out);
+        print("CanNotHireManager", out);//bug
     }
     m1->setSalary(-3);
-    // Meta.hireManager(m1);
+    // Meta.hireManager(m1);bug
     try
     {
         Meta.hireManager(m1);
